@@ -32,11 +32,29 @@ public class AsteroidController {
                 v = 0.5+Math.random()*4;
                 Random rand = new Random();
                 v = 1+rand.nextDouble()*4;
-                System.out.println("----------------------------------------> "+ v);
+                asteroids.add(new Asteroid(x, y, dir, v, asteroidBitmap));
+            }
+
+        }
+        else if(lvl == 2) {
+            asteroids = new ArrayList<Asteroid>();
+            int x, y, dir;
+            double v;
+            for(int i = 0; i < 4; ++i) {
+                x = ((i+2)%2)*1050;
+                y = ((i/2))*1750;
+                double angle = (Math.atan((double)1750/1050));
+                angle = Math.toDegrees(angle);
+                if(i == 0) dir = (int)angle;
+                else if(i == 1) dir = (int)(180-angle);
+                else if(i == 2) dir = -(int)angle;
+                else dir = -((int)(180-angle));
+                v = 2;
                 asteroids.add(new Asteroid(x,y,dir,v,asteroidBitmap));
             }
 
         }
+
 
     }
 
