@@ -54,6 +54,19 @@ public class AsteroidController {
             }
 
         }
+        else {
+            asteroids = new ArrayList<Asteroid>();
+            int x, y, dir;
+            double v;
+            for(int i = 0; i < lvl*2; ++i) {
+                x = (int)(Math.random()*1000);
+                y = (int)(Math.random()*1000);
+                dir = (int)(Math.random()*360);
+                v = 1+Math.random()*lvl*3;
+                asteroids.add(new Asteroid(x,y,dir,v,asteroidBitmap));
+            }
+
+        }
 
 
     }
