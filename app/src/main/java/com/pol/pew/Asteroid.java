@@ -9,8 +9,8 @@ import android.graphics.Paint;
  */
 public class Asteroid {
     private Bitmap bitmap;
-    protected int posx;
-    protected int posy;
+    protected float posx;
+    protected float posy;
     private double velocity;
     private int direction;
     private int size; //50 gran, 25 mitja, 15 petit;
@@ -38,8 +38,8 @@ public class Asteroid {
 
     public void move(int screenWidth, int screenHeight) {
 
-        posx +=(int)(Math.cos(Math.toRadians(direction))*velocity);
-        posy +=(int)(Math.sin(Math.toRadians(direction))*velocity);
+        posx +=(Math.cos(Math.toRadians(direction))*velocity);
+        posy +=(Math.sin(Math.toRadians(direction))*velocity);
     }
 
     public void draw(Canvas canvas, float x, float y, Paint paint) {

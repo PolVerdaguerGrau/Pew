@@ -8,6 +8,7 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  * Created by pol on 26/11/14.
@@ -27,8 +28,11 @@ public class AsteroidController {
             for(int i = 0; i < 10; ++i) {
                 x = (int)(Math.random()*1000);
                 y = 100;
-                dir = 0;
-                v = Math.random()*4;
+                dir = 90;
+                v = 0.5+Math.random()*4;
+                Random rand = new Random();
+                v = 1+rand.nextDouble()*4;
+                System.out.println("----------------------------------------> "+ v);
                 asteroids.add(new Asteroid(x,y,dir,v,asteroidBitmap));
             }
 
