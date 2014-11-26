@@ -1,36 +1,68 @@
 package com.pol.pew;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.content.Context;
+import android.os.Handler;
+import android.util.AttributeSet;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
+public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
-public class Game extends Activity {
+    GameController gameController;
+    SurfaceHolder surfaceHolder;
+    Context context;
+    private ThreadPintor threadPintor;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+    public Game(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        this.context = context;
+        InitView();
     }
 
+    public Game(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.context = context;
+        InitView();
+    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.game, menu);
-        return true;
+    void InitView() {
+        SurfaceHolder surfaceHolder = getHolder();
+        surfaceHolder.addCallback(this);
+        gameController = new GameController();
+        gameController.Init(context);
+        threadPintor = new ThreadPintor(surfaceHolder, context, new Handler(),
+                gameController);
+        setFocusable(true);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        boolean retry = true;
+        threadPintor.state = ThreadPintor.PAUSED;
+        while (retry) {
+            try {
+                threadPintor.join();
+                retry = false;
+            } catch (InterruptedException e) {
+            }
         }
-        return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder arg0) {
+        if (threadPintor.state == ThreadPintor.PAUSED) {
+            threadPintor = new ThreadPintor(getHolder(), context, new Handler(),
+                    gameController);
+            threadPintor.start();
+        } else {
+            threadPintor.start();
+        }
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width,
+                               int height) {
+        gameController.setSurfaceDimensions(width, height);
+    }
+
 }

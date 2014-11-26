@@ -8,19 +8,42 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class MainPage extends Activity {
+public class Levels extends Activity {
 
+
+
+    public void lvl1(View view) {
+        Intent intent = new Intent(this, GameSupport.class);
+        Global glob = Global.getInstance();
+        glob.setLevel(1);
+        startActivity(intent);
+    }
+
+    public void lvl2(View view) {
+        Intent intent = new Intent(this, GameSupport.class);
+        Global glob = Global.getInstance();
+        glob.setLevel(2);
+        startActivity(intent);
+    }
+
+    public void lvl3(View view) {
+        Intent intent = new Intent(this, GameSupport.class);
+        Global glob = Global.getInstance();
+        glob.setLevel(3);
+        startActivity(intent);
+    }
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page);
+        setContentView(R.layout.activity_levels);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_page, menu);
+        getMenuInflater().inflate(R.menu.levels, menu);
         return true;
     }
 
@@ -34,15 +57,5 @@ public class MainPage extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void lvls(View view) {
-        Intent i = new Intent(this, Levels.class);
-        startActivity(i);
-    }
-
-    public void highScores(View view) {
-        Intent i = new Intent(this, HighScores.class);
-        startActivity(i);
     }
 }

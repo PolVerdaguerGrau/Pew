@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:gravity="center_vertical"
+    tools:context="com.pol.pew.Levels">
+
+
+    <ImageView
+        android:id="@+id/lvl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:onClick="lvl1"
+        android:src="@drawable/levelone"/>
+
+    <ImageView
+        android:id="@+id/lvl2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lvl1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:clickable="true"
+        android:onClick="lvl2"
+        android:src="@drawable/leveltwo" />
+
+    <ImageView
+        android:id="@+id/lvl3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lvl2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:clickable="true"
+        android:onClick="lvl3"
+        android:src="@drawable/levelthree" />
+
+</RelativeLayout>
