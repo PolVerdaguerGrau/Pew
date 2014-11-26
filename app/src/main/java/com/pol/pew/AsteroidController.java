@@ -18,7 +18,7 @@ public class AsteroidController {
     Bitmap asteroidBitmap;
     Paint paint;
 
-    public AsteroidController (Resources resources, int lvl) {
+    public AsteroidController (Resources resources, int lvl, int screenWidth, int screenHeight) {
         asteroidBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroid);
         paint = new Paint();
         if(lvl == 1) {
@@ -26,7 +26,7 @@ public class AsteroidController {
             int x, y, dir;
             double v;
             for(int i = 0; i < 10; ++i) {
-                x = (int)(Math.random()*1000);
+                x = (int)(Math.random()*1050);
                 y = 100;
                 dir = 90;
                 v = 0.5+Math.random()*4;

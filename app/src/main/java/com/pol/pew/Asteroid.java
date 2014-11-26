@@ -39,7 +39,11 @@ public class Asteroid {
     public void move(int screenWidth, int screenHeight) {
 
         posx +=(Math.cos(Math.toRadians(direction))*velocity);
+        if(posx >= screenWidth) posx = 0;
+        else if(posx <= 0) posx = screenWidth;
         posy +=(Math.sin(Math.toRadians(direction))*velocity);
+        if(posy >= screenHeight) posy = 0;
+        else if(posy <= 0) posy = screenHeight;
     }
 
     public void draw(Canvas canvas, float x, float y, Paint paint) {

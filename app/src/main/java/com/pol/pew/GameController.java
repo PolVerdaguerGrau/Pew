@@ -43,7 +43,7 @@ public class GameController {
         this.context = context;
         this.resources = context.getResources();
 
-        asteroids = new AsteroidController(resources, level);
+        asteroids = new AsteroidController(resources, level, screenWidth, screenHeight);
         stdPaint = new Paint();
         stdPaint.setColor(Color.BLACK);
         stdPaint.setStyle(Paint.Style.FILL);
