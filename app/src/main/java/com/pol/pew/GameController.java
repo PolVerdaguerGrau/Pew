@@ -26,6 +26,7 @@ public class GameController {
     private Context context;
 
     AsteroidController asteroids;
+    Mussol mussol;
 
     private int screenWidth;
     private int screenHeight;
@@ -44,6 +45,8 @@ public class GameController {
         this.resources = context.getResources();
 
         asteroids = new AsteroidController(resources, level, screenWidth, screenHeight);
+        mussol = new Mussol(resources);
+
         stdPaint = new Paint();
         stdPaint.setColor(Color.BLACK);
         stdPaint.setStyle(Paint.Style.FILL);
@@ -61,15 +64,15 @@ public class GameController {
         time = new SimpleDateFormat("HH:mm:ss").format(new Date());
 
         asteroids.update(screenWidth, screenHeight);
+        mussol.update(screenWidth, screenHeight);
 
     }
 
     public void Draw(Canvas canvas){
 
-
-
         canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
         asteroids.draw(canvas);
+        mussol.draw(canvas,stdPaint);
 
         canvas.drawText(time, 30, 100, textPaint);
         canvas.drawText(String.valueOf(level), 100, 200, textPaint);
