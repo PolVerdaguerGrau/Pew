@@ -13,56 +13,78 @@ public class Mussol {
     private Bitmap bitmap;
     protected float posx;
     protected float posy;
-    private double velocity;
+    private double velocityX;
+    private double velocityY;
     private int directionMovement;
     private int directionFace;
     private boolean alive;
     Global global;
-    int xPantalla;
-    int yPantalla;
+    int maxxPantalla;
+    int maxyPantalla;
+    int minPantalla;
+    int radiMussol;
 
     public Mussol (Resources resources) {
         global = new Global();
-        xPantalla = global.getX_PANTALLA();
-        yPantalla = global.getY_PANTALLA();
-        posx = xPantalla/2;
-        posy = yPantalla/2;
+        maxxPantalla = global.getX_PANTALLA()-15;
+        maxyPantalla = global.getY_PANTALLA()-15;
+        radiMussol = 40;
+        minPantalla = 0 +radiMussol;
+        posx = maxxPantalla/2;
+        posy = maxyPantalla/2;
         bitmap = BitmapFactory.decodeResource(resources, R.drawable.mussol);
-        velocity = 0;
-        directionMovement = 0;
+        velocityX = 0;
+        velocityY = 0;
         directionFace = 0;
         alive = true;
     }
 
     public void update(int screenWidth, int screenHeight) {
-        if(velocity > 0.1)velocity-= velocity/50;
-        else velocity = 0;
-        posx -= (int)Math.sin(directionFace)*velocity;
-        posy -= (int)Math.cos(directionFace)*velocity;
 
-        if(posx >= xPantalla) {
-            posx = xPantalla;
+        decreaseSpeed();
+        posx += velocityX;
+        posy += velocityY;
+
+        if(posx >= maxxPantalla) {
+            posx = maxxPantalla;
+            velocityX =0;
         }
-        if(posy >= yPantalla) {
-            posy = yPantalla;
+        if(posy >= maxyPantalla) {
+            posy = maxyPantalla;
+            velocityY = 0;
         }
-        if(posx <= 0) {
-            posx = 0;
+        if(posx <= minPantalla) {
+            posx = minPantalla;
+            velocityX = 0;
         }
-        if(posy <= 0) {
-            posy = 0;
+        if(posy <= minPantalla) {
+            posy = minPantalla;
+            velocityY = 0;
         }
     }
 
     public void gas() {
-        velocity +=5;
+        velocityX += Math.cos(Math.toRadians(directionFace-90));
+        velocityY += Math.sin(Math.toRadians(directionFace-90));
     }
+
     public void rotateRight() {
-        directionFace +=5;
+        directionFace -=5;
     }
 
     public void rotateLeft() {
-        directionFace -= 5;
+        directionFace += 5;
+    }
+
+    private void decreaseSpeed(){
+         if(Math.abs(velocityX) <= 0.1) velocityX = 0;
+         else if(velocityX != 0) {
+             velocityX -= velocityX/50;
+         }
+         if(Math.abs(velocityY) <= 0.1) velocityY = 0;
+         else if(velocityY != 0) {
+             velocityY -= velocityY/50;
+         }
     }
 
     public void draw(Canvas canvas, Paint paint) {

@@ -63,12 +63,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         this.setOnTouchListener(new OnSwipeTouchListener(context) {
             @Override
             public void onSwipeLeft() {
-                System.out.println("LEFT");
-
+                gameController.rotateRight();
             }
             @Override
             public void onSwipeRight() {
-                System.out.println("RIGHT");
+                gameController.rotateLeft();
             }
             @Override
             public void onSwipeTop() {
