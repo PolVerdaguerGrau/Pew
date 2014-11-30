@@ -33,6 +33,9 @@ public class Mussol {
         posy += (int)Math.cos(directionFace)*velocity;
     }
 
+    public void gas() {
+        velocity +=1;
+    }
     public void rotateRight() {
         directionFace +=5;
     }

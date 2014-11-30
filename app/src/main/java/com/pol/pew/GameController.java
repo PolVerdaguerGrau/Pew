@@ -60,6 +60,9 @@ public class GameController {
 
     }
 
+    public void gas() {
+        mussol.gas();
+    }
     public void Update() {
         time = new SimpleDateFormat("HH:mm:ss").format(new Date());
 

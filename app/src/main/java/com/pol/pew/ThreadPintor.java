@@ -36,8 +36,6 @@ public class ThreadPintor extends Thread {
             beforeTime = System.nanoTime();
 
             gameController.Update();
-
-            //canvas = null;
             try {
                 canvas = surfaceHolder.lockCanvas(null);
                 synchronized (surfaceHolder) {
