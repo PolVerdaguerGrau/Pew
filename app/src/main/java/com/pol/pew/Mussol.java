@@ -17,10 +17,16 @@ public class Mussol {
     private int directionMovement;
     private int directionFace;
     private boolean alive;
+    Global global;
+    int xPantalla;
+    int yPantalla;
 
     public Mussol (Resources resources) {
-        posx = 1050/2;
-        posy = 1750/2;
+        global = new Global();
+        xPantalla = global.getX_PANTALLA();
+        yPantalla = global.getY_PANTALLA();
+        posx = xPantalla/2;
+        posy = yPantalla/2;
         bitmap = BitmapFactory.decodeResource(resources, R.drawable.mussol);
         velocity = 0;
         directionMovement = 0;
@@ -29,12 +35,27 @@ public class Mussol {
     }
 
     public void update(int screenWidth, int screenHeight) {
-        posx += (int)Math.cos(directionFace)*velocity;
-        posy += (int)Math.cos(directionFace)*velocity;
+        if(velocity > 0.1)velocity-= velocity/50;
+        else velocity = 0;
+        posx -= (int)Math.sin(directionFace)*velocity;
+        posy -= (int)Math.cos(directionFace)*velocity;
+
+        if(posx >= xPantalla) {
+            posx = xPantalla;
+        }
+        if(posy >= yPantalla) {
+            posy = yPantalla;
+        }
+        if(posx <= 0) {
+            posx = 0;
+        }
+        if(posy <= 0) {
+            posy = 0;
+        }
     }
 
     public void gas() {
-        velocity +=1;
+        velocity +=5;
     }
     public void rotateRight() {
         directionFace +=5;

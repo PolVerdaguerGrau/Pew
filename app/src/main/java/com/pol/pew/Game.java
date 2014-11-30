@@ -65,7 +65,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             public void onSwipeLeft() {
                 System.out.println("LEFT");
 
-                // gameController.gas();
             }
             @Override
             public void onSwipeRight() {
@@ -73,7 +72,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
             @Override
             public void onSwipeTop() {
-                System.out.println("TOP");
+                gameController.gas();
             }
             @Override
             public void onSwipeBottom() {
