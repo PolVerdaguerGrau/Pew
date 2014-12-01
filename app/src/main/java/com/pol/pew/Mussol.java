@@ -68,12 +68,16 @@ public class Mussol {
         velocityY += Math.sin(Math.toRadians(directionFace-90));
     }
 
-    public void rotateRight() {
-        directionFace -=5;
+    public void rotateRight(float diff) {
+        //directionFace -= 360*diff/maxxPantalla;
+        int aps = 360*(int)diff/maxxPantalla;
+        for(int i = 0; i < aps; ++i) {
+            directionFace -= i;
+        }
     }
 
-    public void rotateLeft() {
-        directionFace += 5;
+    public void rotateLeft(float diff) {
+        directionFace += 360*diff/maxxPantalla;
     }
 
     private void decreaseSpeed(){

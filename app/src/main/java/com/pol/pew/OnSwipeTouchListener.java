@@ -14,6 +14,7 @@ import android.view.View;
  */
 public class OnSwipeTouchListener implements View.OnTouchListener {
 
+    int a = 0;
     private final GestureDetector gestureDetector;
 
     public OnSwipeTouchListener(Context context) {
@@ -26,10 +27,10 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
     public void onSwipeBottom() {
     }
 
-    public void onSwipeLeft() {
+    public void onSwipeLeft(float diff) {
     }
 
-    public void onSwipeRight() {
+    public void onSwipeRight(float diff) {
     }
 
     public boolean onTouch(View v, MotionEvent event) {
@@ -55,9 +56,10 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
                 if (Math.abs(diffX) > Math.abs(diffY)) {
                     if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                         if (diffX > 0) {
-                            onSwipeRight();
+                            onSwipeRight(Math.abs(diffX));
+                            System.out.println("ENTROOOOOOO per TAL COP -> " + a++);
                         } else {
-                            onSwipeLeft();
+                            onSwipeLeft(Math.abs(diffX));
                         }
                     }
                     result = true;

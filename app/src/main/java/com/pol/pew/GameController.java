@@ -64,12 +64,12 @@ public class GameController {
         mussol.gas();
     }
 
-    public void rotateRight() {
-        mussol.rotateRight();
+    public void rotateRight(float diff) {
+        mussol.rotateRight(diff);
     }
 
-    public void rotateLeft() {
-        mussol.rotateLeft();
+    public void rotateLeft(float diff) {
+        mussol.rotateLeft(diff);
     }
 
     public void Update() {
