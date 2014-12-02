@@ -21,17 +21,18 @@ public class Mussol {
     private int directionMovement;
     private int directionFace;
     private boolean alive;
-    int maxxPantalla;
-    int maxyPantalla;
-    int minPantalla;
-    int radiMussol;
-    Resources resources;
+    private int maxxPantalla;
+    private int maxyPantalla;
+    private int minPantalla;
+    private int radiMussol;
+    private Resources resources;
+    private GameController gameController;
 
     ArrayList<Pew> pews;
     Bitmap pewBitmap;
     Paint paint;
 
-    public Mussol (Resources resources) {
+    public Mussol (Resources resources, GameController gameController) {
         maxxPantalla = Global.getX_PANTALLA()-15;
         maxyPantalla = Global.getY_PANTALLA()-15;
         radiMussol = 40;
@@ -44,6 +45,7 @@ public class Mussol {
         directionFace = 0;
         alive = true;
         this.resources = resources;
+        this.gameController = gameController;
 
         pewBitmap = BitmapFactory.decodeResource(resources, R.drawable.pew);
         paint = new Paint();
@@ -109,8 +111,12 @@ public class Mussol {
             Asteroid asteroid = asteroidIterator.next();
             if( (posx+radiMussol >= asteroid.getPosx() - asteroid.getMida()) && (posx+radiMussol <= asteroid.getPosx() + asteroid.getMida()) && (posy+radiMussol >= asteroid.getPosy() - asteroid.getMida()) && (posy+radiMussol <= asteroid.getPosy() + asteroid.getMida())) {
                 alive = false;
+                gameController.mussolCollides();
+                asteroidController.die(asteroid);
             } else if( (posx-radiMussol >= asteroid.getPosx() - asteroid.getMida()) && (posx-radiMussol <= asteroid.getPosx() + asteroid.getMida()) && (posy-radiMussol >= asteroid.getPosy() - asteroid.getMida()) && (posy-radiMussol <= asteroid.getPosy() + asteroid.getMida())) {
                 alive = false;
+                asteroidController.die(asteroid);
+                gameController.mussolCollides();
             }
         }
         decreaseSpeed();
@@ -152,6 +158,7 @@ public class Mussol {
         canvas.rotate(directionFace, posx, posy);
         if(!alive) bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.boom);
         canvas.drawBitmap(bitmap, posx - bitmap.getWidth() / 2, posy - bitmap.getHeight() / 2, paint);
+        alive = true;
         canvas.restore();
     }
 }

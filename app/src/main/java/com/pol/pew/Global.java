@@ -6,7 +6,8 @@ package com.pol.pew;
 public class Global {
 
     private static Global global = new Global();
-    private int level;
+    private int level = 1;
+    private int numberAsteroids = 1000;
 
     private static int X_PANTALLA = 1050;
     private static int Y_PANTALLA = 1750;
@@ -39,4 +40,8 @@ public class Global {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public void setNumberAsteroids(int asteroids) {this.numberAsteroids = asteroids;}
+
+    public int getNumberAsteroids() {return numberAsteroids;}
 }

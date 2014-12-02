@@ -3,11 +3,14 @@
     tools:context="com.pol.pew.GameSupport"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/background" >
 
     <com.pol.pew.Game
         android:id="@+id/game"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"/>
+        <!--android:background="@drawable/background"-->
+
 
 </LinearLayout>

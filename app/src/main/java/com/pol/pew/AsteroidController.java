@@ -22,7 +22,9 @@ public class AsteroidController {
     Global global;
     int xPantalla;
     int yPantalla;
-    public AsteroidController (Resources resources, int lvl, int screenWidth, int screenHeight) {
+    private GameController gameController;
+
+    public AsteroidController (Resources resources, GameController gameController, int lvl, int screenWidth, int screenHeight) {
         asteroidBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroid);
         asteroidMigBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroidmig);
         asteroidXicBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroidxic);
@@ -30,10 +32,12 @@ public class AsteroidController {
         xPantalla = global.getX_PANTALLA();
         yPantalla = global.getY_PANTALLA();
         paint = new Paint();
+        this.gameController = gameController;
         if(lvl == 1) {
             asteroids = new ArrayList<Asteroid>();
             int x, y, dir;
             double v;
+            global.setNumberAsteroids(70);
             for(int i = 0; i < 10; ++i) {
                 x = (int)(Math.random()*xPantalla);
                 y = 100;
@@ -49,6 +53,7 @@ public class AsteroidController {
             asteroids = new ArrayList<Asteroid>();
             int x, y, dir;
             double v;
+            global.setNumberAsteroids(16);
             for(int i = 0; i < 4; ++i) {
                 x = ((i+2)%2)*xPantalla;
                 y = ((i/2))*yPantalla;
@@ -67,6 +72,7 @@ public class AsteroidController {
             asteroids = new ArrayList<Asteroid>();
             int x, y, dir;
             double v;
+            global.setNumberAsteroids(lvl*2+lvl*4+lvl*8);
             for(int i = 0; i < lvl*2; ++i) {
                 x = (int)(Math.random()*xPantalla);
                 y = (int)(Math.random()*yPantalla);
