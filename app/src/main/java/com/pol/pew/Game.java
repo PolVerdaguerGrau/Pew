@@ -159,8 +159,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
            case MotionEvent.ACTION_UP: {
                if (System.currentTimeMillis() < touchDownTime + 150) {
-                   //Log.d("asteroids", "MotionEvent: Tap (Fire)");
-                   //gameController.pewpewpew();
+                   gameController.disparar();
                }
                activePointerId = INVALID_POINTER_ID;
                break;

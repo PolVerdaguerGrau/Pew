@@ -72,6 +72,8 @@ public class GameController {
         mussol.rotateLeft(diff);
     }
 
+    public void disparar() { mussol.disparar(); }
+
     public void Update() {
         time = new SimpleDateFormat("HH:mm:ss").format(new Date());
 

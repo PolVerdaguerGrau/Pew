@@ -6,6 +6,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * Created by pol on 27/11/14.
  */
@@ -18,16 +21,18 @@ public class Mussol {
     private int directionMovement;
     private int directionFace;
     private boolean alive;
-    Global global;
     int maxxPantalla;
     int maxyPantalla;
     int minPantalla;
     int radiMussol;
 
+    ArrayList<Pew> pews;
+    Bitmap pewBitmap;
+    Paint paint;
+
     public Mussol (Resources resources) {
-        global = new Global();
-        maxxPantalla = global.getX_PANTALLA()-15;
-        maxyPantalla = global.getY_PANTALLA()-15;
+        maxxPantalla = Global.getX_PANTALLA()-15;
+        maxyPantalla = Global.getY_PANTALLA()-15;
         radiMussol = 40;
         minPantalla = 0 +radiMussol;
         posx = maxxPantalla/2;
@@ -37,30 +42,10 @@ public class Mussol {
         velocityY = 0;
         directionFace = 0;
         alive = true;
-    }
 
-    public void update(int screenWidth, int screenHeight) {
-
-        decreaseSpeed();
-        posx += velocityX;
-        posy += velocityY;
-
-        if(posx >= maxxPantalla) {
-            posx = maxxPantalla;
-            velocityX =0;
-        }
-        if(posy >= maxyPantalla) {
-            posy = maxyPantalla;
-            velocityY = 0;
-        }
-        if(posx <= minPantalla) {
-            posx = minPantalla;
-            velocityX = 0;
-        }
-        if(posy <= minPantalla) {
-            posy = minPantalla;
-            velocityY = 0;
-        }
+        pewBitmap = BitmapFactory.decodeResource(resources, R.drawable.pew);
+        paint = new Paint();
+        pews = new ArrayList<Pew>();
     }
 
     public void gas() {
@@ -87,7 +72,61 @@ public class Mussol {
          }
     }
 
+    public void disparar() {
+        Pew p = new Pew(posx,posy, directionFace, pewBitmap);
+        pews.add(p);
+    }
+
+    public void updatePews(int screenWidth, int screenHeight) {
+        Iterator<Pew> ite =  pews.iterator();
+        while(ite.hasNext()) {
+            Pew pew = ite.next();
+            if(pew.isAlive()) {
+                pew.move(screenWidth, screenHeight);
+            } else {
+                ite.remove();
+            }
+
+        }
+    }
+
+    public void update(int screenWidth, int screenHeight) {
+
+        decreaseSpeed();
+        posx += velocityX;
+        posy += velocityY;
+
+        if(posx >= maxxPantalla) {
+            posx = maxxPantalla;
+            velocityX =0;
+        }
+        if(posy >= maxyPantalla) {
+            posy = maxyPantalla;
+            velocityY = 0;
+        }
+        if(posx <= minPantalla) {
+            posx = minPantalla;
+            velocityX = 0;
+        }
+        if(posy <= minPantalla) {
+            posy = minPantalla;
+            velocityY = 0;
+        }
+
+        updatePews(screenWidth, screenHeight);
+    }
+
+
+    public void drawPews(Canvas canvas) {
+        Iterator<Pew> ite =  pews.iterator();
+        while(ite.hasNext()) {
+            Pew pew = ite.next();
+            pew.draw(canvas, pew.posx, pew.posy, paint);
+        }
+    }
+
     public void draw(Canvas canvas, Paint paint) {
+        drawPews(canvas);
         canvas.save();
         canvas.rotate(directionFace, posx, posy);
         canvas.drawBitmap(bitmap, posx - bitmap.getWidth() / 2, posy - bitmap.getHeight() / 2, paint);

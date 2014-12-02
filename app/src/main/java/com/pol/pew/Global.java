@@ -10,6 +10,8 @@ public class Global {
 
     private static int X_PANTALLA = 1050;
     private static int Y_PANTALLA = 1750;
+    private static int STANDARD_VELOCITY_PEW = 20;
+
 
     public static int getX_PANTALLA() {
         return X_PANTALLA;
@@ -19,6 +21,9 @@ public class Global {
         return Y_PANTALLA;
     }
 
+    public static int getSTANDARD_VELOCITY_PEW() {
+        return STANDARD_VELOCITY_PEW;
+    }
 
     public static Global getInstance() {
         return global;
