@@ -1,13 +1,13 @@
 package com.pol.pew;
 
-/**
- * Created by pol on 30/11/14.
- */
-
 import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+/**
+ * Created by pol on 30/11/14.
+ */
 
 /**
  * Detects left and right swipes across a view.

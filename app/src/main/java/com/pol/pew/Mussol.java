@@ -69,15 +69,11 @@ public class Mussol {
     }
 
     public void rotateRight(float diff) {
-        //directionFace -= 360*diff/maxxPantalla;
-        int aps = 360*(int)diff/maxxPantalla;
-        for(int i = 0; i < aps; ++i) {
-            directionFace -= i;
-        }
+        directionFace -= 300*diff/maxxPantalla;
     }
 
     public void rotateLeft(float diff) {
-        directionFace += 360*diff/maxxPantalla;
+        directionFace += 300*diff/maxxPantalla;
     }
 
     private void decreaseSpeed(){
