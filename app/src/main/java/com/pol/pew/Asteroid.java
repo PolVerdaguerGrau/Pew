@@ -9,24 +9,24 @@ import android.graphics.Paint;
  */
 public class Asteroid {
     private Bitmap bitmap;
-    protected float posx;
-    protected float posy;
+    private float posx;
+    private float posy;
     private double velocity;
     private int direction;
     private int size; //50 gran, 25 mitja, 15 petit;
     private boolean alive;
 
-    public Asteroid(int x, int y, int dir, double v, Bitmap bitmap) {
+    public Asteroid(float x, float y, int dir, double v, Bitmap bitmap) {
         this.bitmap = bitmap;
         alive = true;
         posx = x;
         posy = y;
         velocity = v;
         direction = dir;
-        size = 50;
+        size = Global.getSTANDARD_SIZE_ASTEROID();
     }
 
-    public Asteroid(int x, int y, int dir, double v, Bitmap bitmap, int size) {
+    public Asteroid(float x, float y, int dir, double v, Bitmap bitmap, int size) {
         this.bitmap = bitmap;
         alive = true;
         posx = x;
@@ -36,6 +36,22 @@ public class Asteroid {
         this.size = size;
     }
 
+    public float getPosx() {return posx;}
+
+    public float getPosy() {return posy;}
+
+    public int getDir() {return direction;}
+
+    public int getMida() {return size;}
+
+    public void die() {
+        alive = false;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+    public double getVelocity() {return velocity;}
     public void move(int screenWidth, int screenHeight) {
 
         posx +=(Math.cos(Math.toRadians(direction))*velocity);

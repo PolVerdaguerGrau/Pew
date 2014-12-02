@@ -25,6 +25,7 @@ public class Mussol {
     int maxyPantalla;
     int minPantalla;
     int radiMussol;
+    Resources resources;
 
     ArrayList<Pew> pews;
     Bitmap pewBitmap;
@@ -42,6 +43,7 @@ public class Mussol {
         velocityY = 0;
         directionFace = 0;
         alive = true;
+        this.resources = resources;
 
         pewBitmap = BitmapFactory.decodeResource(resources, R.drawable.pew);
         paint = new Paint();
@@ -77,11 +79,21 @@ public class Mussol {
         pews.add(p);
     }
 
-    public void updatePews(int screenWidth, int screenHeight) {
+    public void updatePews(int screenWidth, int screenHeight, AsteroidController asteroidController) {
         Iterator<Pew> ite =  pews.iterator();
         while(ite.hasNext()) {
             Pew pew = ite.next();
             if(pew.isAlive()) {
+                Iterator<Asteroid> asteroidIterator =  asteroidController.getAsteroids().iterator();
+                while(asteroidIterator.hasNext()) {
+                    Asteroid asteroid = asteroidIterator.next();
+                    if(pew.posx >= asteroid.getPosx()-asteroid.getMida() && pew.posx  <= asteroid.getPosx()+asteroid.getMida()) {
+                        if(pew.posy >= asteroid.getPosy()-asteroid.getMida() && pew.posy <= asteroid.getPosy()+asteroid.getMida()) {
+                            asteroidController.die(asteroid);
+                            pew.die();
+                        }
+                    }
+                }
                 pew.move(screenWidth, screenHeight);
             } else {
                 ite.remove();
@@ -90,8 +102,17 @@ public class Mussol {
         }
     }
 
-    public void update(int screenWidth, int screenHeight) {
+    public void update(int screenWidth, int screenHeight, AsteroidController asteroidController) {
 
+        Iterator<Asteroid> asteroidIterator =  asteroidController.getAsteroids().iterator();
+        while(asteroidIterator.hasNext()) {
+            Asteroid asteroid = asteroidIterator.next();
+            if( (posx+radiMussol >= asteroid.getPosx() - asteroid.getMida()) && (posx+radiMussol <= asteroid.getPosx() + asteroid.getMida()) && (posy+radiMussol >= asteroid.getPosy() - asteroid.getMida()) && (posy+radiMussol <= asteroid.getPosy() + asteroid.getMida())) {
+                alive = false;
+            } else if( (posx-radiMussol >= asteroid.getPosx() - asteroid.getMida()) && (posx-radiMussol <= asteroid.getPosx() + asteroid.getMida()) && (posy-radiMussol >= asteroid.getPosy() - asteroid.getMida()) && (posy-radiMussol <= asteroid.getPosy() + asteroid.getMida())) {
+                alive = false;
+            }
+        }
         decreaseSpeed();
         posx += velocityX;
         posy += velocityY;
@@ -113,7 +134,7 @@ public class Mussol {
             velocityY = 0;
         }
 
-        updatePews(screenWidth, screenHeight);
+        updatePews(screenWidth, screenHeight, asteroidController);
     }
 
 
@@ -129,6 +150,7 @@ public class Mussol {
         drawPews(canvas);
         canvas.save();
         canvas.rotate(directionFace, posx, posy);
+        if(!alive) bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.boom);
         canvas.drawBitmap(bitmap, posx - bitmap.getWidth() / 2, posy - bitmap.getHeight() / 2, paint);
         canvas.restore();
     }

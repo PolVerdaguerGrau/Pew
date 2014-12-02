@@ -16,12 +16,16 @@ import java.util.Random;
 public class AsteroidController {
     ArrayList<Asteroid> asteroids;
     Bitmap asteroidBitmap;
+    Bitmap asteroidMigBitmap;
+    Bitmap asteroidXicBitmap;
     Paint paint;
     Global global;
     int xPantalla;
     int yPantalla;
     public AsteroidController (Resources resources, int lvl, int screenWidth, int screenHeight) {
         asteroidBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroid);
+        asteroidMigBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroidmig);
+        asteroidXicBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroidxic);
         global = new Global();
         xPantalla = global.getX_PANTALLA();
         yPantalla = global.getY_PANTALLA();
@@ -76,17 +80,37 @@ public class AsteroidController {
 
     }
 
+    public ArrayList<Asteroid> getAsteroids() {
+        return asteroids;
+    }
+
+
+    public void die(Asteroid asteroid) {
+        asteroid.die();
+    }
     public void update(int screenWidth, int screenHeight) {
-        Iterator<Asteroid> ite =  asteroids.iterator();
-        while(ite.hasNext()) {
-            Asteroid asteroid = ite.next();
-            asteroid.move(screenWidth, screenHeight);
+        Iterator<Asteroid> asteroidIterator =  asteroids.iterator();
+        while(asteroidIterator.hasNext()) {
+            Asteroid asteroid = asteroidIterator.next();
+            if(asteroid.isAlive()) {
+                asteroid.move(screenWidth, screenHeight);
+            } else {
+                asteroidIterator.remove();
+                if(asteroid.getMida() == 52) {
+                    asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()+30, asteroid.getVelocity(), asteroidMigBitmap, asteroid.getMida()/2));
+                    asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()-30, asteroid.getVelocity(), asteroidMigBitmap, asteroid.getMida()/2));
+                } else if(asteroid.getMida() == 26) {
+                    asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()+30, asteroid.getVelocity(), asteroidXicBitmap, asteroid.getMida()/2));
+                    asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()-30, asteroid.getVelocity(), asteroidXicBitmap, asteroid.getMida()/2));
+                }
+                break;
+            }
         }
     }
 
     public void draw(Canvas canvas) {
         for(Asteroid asteroid : asteroids) {
-            asteroid.draw(canvas, asteroid.posx, asteroid.posy, paint);
+            asteroid.draw(canvas, asteroid.getPosx(), asteroid.getPosy(), paint);
         }
     }
 }

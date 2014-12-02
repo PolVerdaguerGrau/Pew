@@ -32,6 +32,10 @@ public class Pew {
         public boolean isAlive() {
             return alive;
         }
+
+        public void die() {
+            alive = false;
+        }
         public void move(int screenWidth, int screenHeight) {
 
             posx +=(Math.cos(Math.toRadians(direction))*velocity);

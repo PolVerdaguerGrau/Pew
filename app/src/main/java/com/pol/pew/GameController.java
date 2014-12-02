@@ -78,7 +78,7 @@ public class GameController {
         time = new SimpleDateFormat("HH:mm:ss").format(new Date());
 
         asteroids.update(screenWidth, screenHeight);
-        mussol.update(screenWidth, screenHeight);
+        mussol.update(screenWidth, screenHeight, asteroids);
 
     }
 
