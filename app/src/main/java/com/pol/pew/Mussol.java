@@ -35,11 +35,13 @@ public class Mussol {
     public Mussol (Resources resources, GameController gameController) {
         maxxPantalla = Global.getX_PANTALLA()-15;
         maxyPantalla = Global.getY_PANTALLA()-15;
-        radiMussol = 40;
+        radiMussol = Global.getMIDA_MUSSOL()/2;
         minPantalla = 0 +radiMussol;
         posx = maxxPantalla/2;
         posy = maxyPantalla/2;
         bitmap = BitmapFactory.decodeResource(resources, R.drawable.mussol);
+        bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
+
         velocityX = 0;
         velocityY = 0;
         directionFace = 0;
@@ -89,8 +91,8 @@ public class Mussol {
                 Iterator<Asteroid> asteroidIterator =  asteroidController.getAsteroids().iterator();
                 while(asteroidIterator.hasNext()) {
                     Asteroid asteroid = asteroidIterator.next();
-                    if(pew.posx >= asteroid.getPosx()-asteroid.getMida() && pew.posx  <= asteroid.getPosx()+asteroid.getMida()) {
-                        if(pew.posy >= asteroid.getPosy()-asteroid.getMida() && pew.posy <= asteroid.getPosy()+asteroid.getMida()) {
+                    if(pew.posx >= asteroid.getPosx()-asteroid.getMida()/2 && pew.posx  <= asteroid.getPosx()+asteroid.getMida()/2) {
+                        if(pew.posy >= asteroid.getPosy()-asteroid.getMida()/2 && pew.posy <= asteroid.getPosy()+asteroid.getMida()/2) {
                             asteroidController.die(asteroid);
                             pew.die();
                         }
@@ -109,13 +111,15 @@ public class Mussol {
         Iterator<Asteroid> asteroidIterator =  asteroidController.getAsteroids().iterator();
         while(asteroidIterator.hasNext()) {
             Asteroid asteroid = asteroidIterator.next();
-            if( (posx+radiMussol >= asteroid.getPosx() - asteroid.getMida()) && (posx+radiMussol <= asteroid.getPosx() + asteroid.getMida()) && (posy+radiMussol >= asteroid.getPosy() - asteroid.getMida()) && (posy+radiMussol <= asteroid.getPosy() + asteroid.getMida())) {
+            if( (posx+radiMussol >= asteroid.getPosx() - asteroid.getMida()/2) && (posx+radiMussol <= asteroid.getPosx() + asteroid.getMida()/2) && (posy+radiMussol >= asteroid.getPosy() - asteroid.getMida()/2) && (posy+radiMussol <= asteroid.getPosy() + asteroid.getMida()/2)) {
                 alive = false;
+                asteroidController.die(asteroid);
                 gameController.mussolCollides();
-                asteroidController.die(asteroid);
-            } else if( (posx-radiMussol >= asteroid.getPosx() - asteroid.getMida()) && (posx-radiMussol <= asteroid.getPosx() + asteroid.getMida()) && (posy-radiMussol >= asteroid.getPosy() - asteroid.getMida()) && (posy-radiMussol <= asteroid.getPosy() + asteroid.getMida())) {
+                gameController.asteroidBreaks();
+            } else if( (posx-radiMussol >= asteroid.getPosx() - asteroid.getMida()/2) && (posx-radiMussol <= asteroid.getPosx() + asteroid.getMida()/2) && (posy-radiMussol >= asteroid.getPosy() - asteroid.getMida()/2) && (posy-radiMussol <= asteroid.getPosy() + asteroid.getMida()/2)) {
                 alive = false;
                 asteroidController.die(asteroid);
+                gameController.asteroidBreaks();
                 gameController.mussolCollides();
             }
         }
@@ -148,7 +152,9 @@ public class Mussol {
         Iterator<Pew> ite =  pews.iterator();
         while(ite.hasNext()) {
             Pew pew = ite.next();
-            pew.draw(canvas, pew.posx, pew.posy, paint);
+            if(pew.isAlive()) {
+                pew.draw(canvas, pew.posx, pew.posy, paint);
+            }
         }
     }
 
@@ -157,6 +163,8 @@ public class Mussol {
         canvas.save();
         canvas.rotate(directionFace, posx, posy);
         if(!alive) bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.boom);
+        else bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.mussol);
+        bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
         canvas.drawBitmap(bitmap, posx - bitmap.getWidth() / 2, posy - bitmap.getHeight() / 2, paint);
         alive = true;
         canvas.restore();

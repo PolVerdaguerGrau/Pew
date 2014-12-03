@@ -86,26 +86,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         gameController.setSurfaceDimensions(width, height);
     }
 
-
-
-
-   /* class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-        private static final String DEBUG_TAG = "Gestures";
-
-        @Override
-        public boolean onDown(MotionEvent event) {
-            Log.d(DEBUG_TAG, "onDown: " + event.toString());
-            return true;
-        }
-
-        @Override
-        public boolean onFling(MotionEvent event1, MotionEvent event2,
-                               float velocityX, float velocityY) {
-            Log.d(DEBUG_TAG, "onFling: " + event1.toString()+event2.toString());
-            return true;
-        }
-    }*/
-
     private float lastTouchX;
     private float lastTouchY;
     private long touchDownTime = 0;
@@ -142,15 +122,15 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                lastTouchX = x;
                lastTouchY = y;
 
-               if (dY < -10) {
+               if (dY < -5) {
                    gameController.gas();
                    break;
                }
-               if (dX > 10) {
+               if (dX > 5) {
                    gameController.rotateRight(-dX);
                    break;
                }
-               if (dX < -10) {
+               if (dX < -5) {
                    gameController.rotateLeft(dX);
                    break;
                }

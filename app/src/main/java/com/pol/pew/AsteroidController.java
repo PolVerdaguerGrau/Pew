@@ -26,8 +26,14 @@ public class AsteroidController {
 
     public AsteroidController (Resources resources, GameController gameController, int lvl, int screenWidth, int screenHeight) {
         asteroidBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroid);
+        asteroidBitmap = Bitmap.createScaledBitmap(asteroidBitmap, Global.getSTANDARD_SIZE_ASTEROID(), Global.getSTANDARD_SIZE_ASTEROID(), true);
+
         asteroidMigBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroidmig);
+        asteroidMigBitmap = Bitmap.createScaledBitmap(asteroidBitmap, Global.getSTANDARD_SIZE_ASTEROID()/2, Global.getSTANDARD_SIZE_ASTEROID()/2, true);
+
         asteroidXicBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroidxic);
+        asteroidXicBitmap = Bitmap.createScaledBitmap(asteroidBitmap, Global.getSTANDARD_SIZE_ASTEROID()/4, Global.getSTANDARD_SIZE_ASTEROID()/4, true);
+
         global = new Global();
         xPantalla = global.getX_PANTALLA();
         yPantalla = global.getY_PANTALLA();
@@ -37,7 +43,6 @@ public class AsteroidController {
             asteroids = new ArrayList<Asteroid>();
             int x, y, dir;
             double v;
-            global.setNumberAsteroids(70);
             for(int i = 0; i < 10; ++i) {
                 x = (int)(Math.random()*xPantalla);
                 y = 100;
@@ -53,7 +58,6 @@ public class AsteroidController {
             asteroids = new ArrayList<Asteroid>();
             int x, y, dir;
             double v;
-            global.setNumberAsteroids(16);
             for(int i = 0; i < 4; ++i) {
                 x = ((i+2)%2)*xPantalla;
                 y = ((i/2))*yPantalla;
@@ -69,10 +73,10 @@ public class AsteroidController {
 
         }
         else {
+             //LEVEL 3 ONLY WORKING
             asteroids = new ArrayList<Asteroid>();
             int x, y, dir;
             double v;
-            global.setNumberAsteroids(lvl*2+lvl*4+lvl*8);
             for(int i = 0; i < lvl*2; ++i) {
                 x = (int)(Math.random()*xPantalla);
                 y = (int)(Math.random()*yPantalla);
@@ -102,10 +106,13 @@ public class AsteroidController {
                 asteroid.move(screenWidth, screenHeight);
             } else {
                 asteroidIterator.remove();
-                if(asteroid.getMida() == 52) {
-                    asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()+30, asteroid.getVelocity(), asteroidMigBitmap, asteroid.getMida()/2));
-                    asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()-30, asteroid.getVelocity(), asteroidMigBitmap, asteroid.getMida()/2));
-                } else if(asteroid.getMida() == 26) {
+                gameController.asteroidBreaks();
+                if(asteroid.getMida() == Global.getSTANDARD_SIZE_ASTEROID()) {
+                    asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()+45, asteroid.getVelocity(), asteroidMigBitmap, asteroid.getMida()/2));
+                    asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()-45, asteroid.getVelocity(), asteroidMigBitmap, asteroid.getMida()/2));
+                    asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()+135, asteroid.getVelocity(), asteroidMigBitmap, asteroid.getMida()/2));
+                    asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()-135, asteroid.getVelocity(), asteroidMigBitmap, asteroid.getMida()/2));
+                } else if(asteroid.getMida() == Global.getSTANDARD_SIZE_ASTEROID()/2) {
                     asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()+30, asteroid.getVelocity(), asteroidXicBitmap, asteroid.getMida()/2));
                     asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()-30, asteroid.getVelocity(), asteroidXicBitmap, asteroid.getMida()/2));
                 }

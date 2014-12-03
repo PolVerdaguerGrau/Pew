@@ -8,9 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * Created by pol on 26/11/14.
  */
@@ -22,8 +19,7 @@ public class GameController {
 
     Paint textPaint;
 
-    private String time;
-    private String lost;
+    private String finished;
 
     private Resources resources;
     private Context context;
@@ -39,10 +35,7 @@ public class GameController {
     Bitmap background;
     Bitmap bitmapLives;
 
-    public GameController() {
-
-
-    }
+    public GameController() {}
 
     public void Init(Context context){
         Global glob = Global.getInstance();
@@ -64,7 +57,9 @@ public class GameController {
         textPaint.setTextSize(40);
 
         background = BitmapFactory.decodeResource(resources, R.drawable.background);
-        bitmapLives = BitmapFactory.decodeResource(resources, R.drawable.live);
+        bitmapLives = BitmapFactory.decodeResource(resources, R.drawable.littlelive);
+        bitmapLives = Bitmap.createScaledBitmap(bitmapLives, 25, 25, true);
+
 
 
         setSurfaceDimensions(240, 160);
@@ -76,7 +71,7 @@ public class GameController {
         gameStatics.decreaseLives();
     }
 
-    public void setAsteroidBreaks() {
+    public void asteroidBreaks() {
         gameStatics.decreaseAsteroids();
     }
     public void gas() {
@@ -94,46 +89,47 @@ public class GameController {
     public void disparar() { mussol.disparar(); }
 
     public void Update() {
-        time = new SimpleDateFormat("HH:mm:ss").format(new Date());
-
         asteroids.update(screenWidth, screenHeight);
         mussol.update(screenWidth, screenHeight, asteroids);
-
     }
 
     public void Draw(Canvas canvas){
+        if(canvas!=null) {
 
-        if(!gameStatics.isLost() && !gameStatics.isFinished()) {
+            if (!gameStatics.isLost() && !gameStatics.isFinished()) {
 
-            canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
-            canvas.drawBitmap(background, 0, 0, null);
-            canvas.drawText(time, 30, 100, textPaint);
-            canvas.drawText(String.valueOf(level), 100, 200, textPaint);
-            String lives = String.valueOf(gameStatics.getLives());
-            canvas.drawText(lives, 100, 300, textPaint);
+                canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
+                canvas.drawBitmap(background, 0, 0, null);
+                asteroids.draw(canvas);
+                mussol.draw(canvas, stdPaint);
+                canvas.drawText(String.valueOf(level), 100, 200, textPaint);
+                String lives = String.valueOf(gameStatics.getLives());
+                canvas.drawText(lives, 100, 300, textPaint);
+                String aster = String.valueOf(gameStatics.getAsteroids());
+                canvas.drawText(aster, 100, 500, textPaint);
+                for (int i = 1; i <= gameStatics.getLives(); ++i) {
+                    canvas.drawBitmap(bitmapLives, 100+ i*25, 900, null);
+                };
+            } else if (gameStatics.isLost()) {
+                canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
+                finished = "YOU LOST";
+                canvas.drawText(finished, 100, 200, textPaint);
+                canvas.drawText(String.valueOf(level), 100, 300, textPaint);
+                String lives = String.valueOf(gameStatics.getLives());
+                canvas.drawText(lives, 100, 400, textPaint);
 
-            for(int i = 1; i <= gameStatics.getLives(); ++i) {
-                canvas.drawBitmap(bitmapLives, i*30, 30, null);
+
+            } else if (gameStatics.isFinished()) {
+                    canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
+                    finished = "LEVEL CLEAR";
+                    canvas.drawText(finished, 100, 200, textPaint);
+                    canvas.drawText(String.valueOf(level), 150, 200, textPaint);
+                    String lives = String.valueOf(gameStatics.getLives());
+                    canvas.drawText(lives, 100, 400, textPaint);
+                    String points = String.valueOf(gameStatics.getPunctuation());
+                    canvas.drawText(points, 100, 300, textPaint);
+                }
             }
-            asteroids.draw(canvas);
-            mussol.draw(canvas, stdPaint);
-        }
-        else if(gameStatics.isLost()) {
-            canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
-            lost = "YOU LOST";
-            canvas.drawText(lost, 100, 200, textPaint);
-            canvas.drawText(String.valueOf(level), 100, 300, textPaint);
-            String lives = String.valueOf(gameStatics.getLives());
-            canvas.drawText(lives, 100, 400, textPaint);
-
-
-
-        }
-        else if(gameStatics.isFinished()) {
-
-        }
-
-
     }
 
     public void setSurfaceDimensions(int width, int height) {

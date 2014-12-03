@@ -21,12 +21,12 @@ public class GameStatics {
 
     public GameStatics(Resources resources, int lvl, GameController gameController) {
         lives = Global.getSTARTING_LIVES();
-        Global global = new Global();
-        remainingAsteroids = global.getNumberAsteroids();
+        if(lvl == 1) {remainingAsteroids = Global.getASTEROIDS_LEVEL1();}
+        else if(lvl == 2) {remainingAsteroids = Global.getASTEROIDS_LEVEL2();}
+        else if(lvl == 3) {remainingAsteroids = Global.getASTEROIDS_LEVEL3();}
         fuelUsed = ammoUsed = puntuacio = 0;
         startingTime = System.nanoTime();
         this.lvl = lvl;
-        this.remainingAsteroids = remainingAsteroids;
         lost = false;
         finished = false;
         this.gameController = gameController;
@@ -50,8 +50,10 @@ public class GameStatics {
         }
     }
 
-    public double getPunctuation() {
-        return actualTime-startingTime;
+    public int getAsteroids() {return remainingAsteroids;}
+
+    public int getPunctuation() {
+        return (int)((actualTime/100000000/1000-startingTime/1000000000/1000));
     }
 
     public boolean isLost() {return lost;}
