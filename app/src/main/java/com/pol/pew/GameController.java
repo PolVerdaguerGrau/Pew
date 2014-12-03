@@ -36,6 +36,8 @@ public class GameController {
     Bitmap background;
     Bitmap bitmapLives;
 
+    private int draws;
+
     public GameController() {}
 
     public void Init(Context context){
@@ -63,6 +65,7 @@ public class GameController {
 
         setSurfaceDimensions(240, 160);
 
+        draws = 0;
 
     }
 
@@ -111,19 +114,27 @@ public class GameController {
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
                 canvas.drawBitmap(background, 0, 0, null);
                 asteroids.draw(canvas);
+                Global global = Global.getInstance();
                 mussol.draw(canvas, stdPaint);
+                boolean explotat = global.getExplotat();
                 canvas.drawText("Level: " + String.valueOf(level), 50, 100, textPaint);
                 String aster = String.valueOf(gameStatics.getAsteroids());
                 canvas.drawText("Asteroids: " + aster, screenWidth - 300, 100, textPaint);
-                Global global = Global.getInstance();
-                if(global.getExplotat()) {
-                    long inittime = System.nanoTime() / 1000000000;
+                ++draws;
+                System.out.println("DRAWS "+draws);
+                if(draws >= 1 && explotat) {
+                    System.out.println("bucle abans");
+
+                    long inittime = System.nanoTime()/100000;
                     long currenttime = inittime;
-                    while (currenttime - inittime <= 1) {
-                        currenttime = System.nanoTime() / 1000000000;
+                    while (currenttime - inittime <= 1 && global.getExplotat()) {
+                        currenttime = System.nanoTime()/100000;
+                        System.out.println("bucle");
                     }
+                    System.out.println("bucle fora");
+
                     gameSupport = Global.getGameSupport();
-                    gameSupport.retry(level);
+                        gameSupport.retry(level);
                 }
 
             } else if (gameStatics.isFinished()) {

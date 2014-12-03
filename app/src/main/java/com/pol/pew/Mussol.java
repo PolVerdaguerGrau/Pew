@@ -168,7 +168,6 @@ public class Mussol {
         if(!alive || global.isFinished()) {
             bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.boom);
             bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL()+20, Global.getMIDA_MUSSOL()+20, true);
-            if(global.isFinished()) global.setExplotat(true);
         }
         else {
             global.setExplotat(true);
@@ -176,7 +175,8 @@ public class Mussol {
             bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
         }
         canvas.drawBitmap(bitmap, posx - bitmap.getWidth() / 2, posy - bitmap.getHeight() / 2, paint);
-        alive = true;
+        if(global.isFinished()) global.setExplotat(true);
+        else {alive = true;}
         canvas.restore();
     }
 }
