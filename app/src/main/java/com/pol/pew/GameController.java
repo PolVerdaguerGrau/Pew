@@ -23,6 +23,7 @@ public class GameController {
 
     private Resources resources;
     private Context context;
+    private GameSupport gameSupport;
 
     AsteroidController asteroids;
     Mussol mussol;
@@ -59,8 +60,6 @@ public class GameController {
         background = BitmapFactory.decodeResource(resources, R.drawable.background);
         bitmapLives = BitmapFactory.decodeResource(resources, R.drawable.littlelive);
         bitmapLives = Bitmap.createScaledBitmap(bitmapLives, 25, 25, true);
-
-
 
         setSurfaceDimensions(240, 160);
 
@@ -112,12 +111,15 @@ public class GameController {
                 };
             } else if (gameStatics.isLost()) {
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
-                finished = "YOU LOST";
+                /*finished = "YOU LOST";
                 canvas.drawText(finished, 100, 200, textPaint);
                 canvas.drawText(String.valueOf(level), 100, 300, textPaint);
                 String lives = String.valueOf(gameStatics.getLives());
                 canvas.drawText(lives, 100, 400, textPaint);
+*/
+                gameSupport = Global.getGameSupport();
 
+               gameSupport.retry(level);
 
             } else if (gameStatics.isFinished()) {
                     canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);

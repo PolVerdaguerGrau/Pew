@@ -8,6 +8,12 @@ public class Global {
     private static Global global = new Global();
     private int level = 1;
 
+
+    private static GameSupport gameSupport = new GameSupport();
+
+
+
+
     private static int X_PANTALLA = 1050;
     private static int Y_PANTALLA = 1750;
     private static int STANDARD_VELOCITY_PEW = 20;
@@ -62,6 +68,14 @@ public class Global {
 
     public static int getASTEROIDS_LEVEL3() {
         return ASTEROIDS_LEVEL3;
+    }
+
+    public static GameSupport getGameSupport() {
+        return gameSupport;
+    }
+
+    public static void setGameSupport(GameSupport gameSupportt) {
+        gameSupport = gameSupportt;
     }
 
 }

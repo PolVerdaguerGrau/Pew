@@ -1,37 +1,27 @@
 package com.pol.pew;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class GameSupport extends Activity {
+public class Lost extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_support);
-        Global.setGameSupport(this);
+        setContentView(R.layout.activity_lost);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.game_support, menu);
+        getMenuInflater().inflate(R.menu.lost, menu);
         return true;
     }
 
-
-
-    public void retry(int lvl) {
-        Intent intent = new Intent(this, Lost.class);
-        Global glob = Global.getInstance();
-        glob.setLevel(lvl);
-        startActivity(intent);
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -44,4 +34,3 @@ public class GameSupport extends Activity {
         return super.onOptionsItemSelected(item);
     }
 }
-

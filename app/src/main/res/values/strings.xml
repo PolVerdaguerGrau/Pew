@@ -9,5 +9,6 @@
     <string name="HighScores">High Scores</string>
     <string name="title_activity_levels">Levels</string>
     <string name="title_activity_game_support">GameSupport</string>
+    <string name="title_activity_lost">Lost</string>
 
 </resources>
