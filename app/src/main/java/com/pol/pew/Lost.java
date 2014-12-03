@@ -1,9 +1,11 @@
 package com.pol.pew;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class Lost extends Activity {
@@ -32,5 +34,22 @@ public class Lost extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void mainpage(View view) {
+        Intent intent = new Intent(this, MainPage.class);
+        startActivity(intent);
+    }
+
+    public void retry(View view) {
+        Intent intent = new Intent(this, GameSupport.class);
+        startActivity(intent);
+    }
+
+    public void exit(View view) {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

@@ -20,12 +20,12 @@
         <activity
             android:name=".HighScores"
             android:label="@string/title_activity_high_scores"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name=".Levels"
             android:label="@string/title_activity_levels"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name=".GameSupport"

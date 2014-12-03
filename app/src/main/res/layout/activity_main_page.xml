@@ -13,6 +13,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="90dp"
+
             android:src="@drawable/pewpewpew"/>
 
         <ImageView
@@ -21,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgLogo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="70dp"
             android:clickable="true"
             android:onClick="lvls"
             android:src="@drawable/play" />
@@ -32,9 +34,22 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/btnPlay"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="40dp"
             android:clickable="true"
             android:onClick="highScores"
             android:src="@drawable/high" />
 
-    </RelativeLayout>
+        <ImageView
+            android:id="@+id/btnExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnHigh"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:clickable="true"
+            android:onClick="exit"
+            android:src="@drawable/exit" />
+
+
+
+</RelativeLayout>

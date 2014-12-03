@@ -101,22 +101,15 @@ public class GameController {
                 canvas.drawBitmap(background, 0, 0, null);
                 asteroids.draw(canvas);
                 mussol.draw(canvas, stdPaint);
-                canvas.drawText(String.valueOf(level), 100, 200, textPaint);
-                String lives = String.valueOf(gameStatics.getLives());
-                canvas.drawText(lives, 100, 300, textPaint);
+                canvas.drawText("Level: "+ String.valueOf(level), 50, 100, textPaint);
                 String aster = String.valueOf(gameStatics.getAsteroids());
-                canvas.drawText(aster, 100, 500, textPaint);
-                for (int i = 1; i <= gameStatics.getLives(); ++i) {
-                    canvas.drawBitmap(bitmapLives, 100+ i*25, 900, null);
+                canvas.drawText("Asteroids: " + aster, screenWidth-300, 100, textPaint);
+                for (int i = -1; i <= gameStatics.getLives()-2; ++i) {
+                    canvas.drawBitmap(bitmapLives, screenWidth/2+i*30, 100, null);
                 };
             } else if (gameStatics.isLost()) {
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
-                /*finished = "YOU LOST";
-                canvas.drawText(finished, 100, 200, textPaint);
-                canvas.drawText(String.valueOf(level), 100, 300, textPaint);
-                String lives = String.valueOf(gameStatics.getLives());
-                canvas.drawText(lives, 100, 400, textPaint);
-*/
+
                 gameSupport = Global.getGameSupport();
 
                gameSupport.retry(level);
