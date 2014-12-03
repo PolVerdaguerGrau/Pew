@@ -19,8 +19,10 @@ public class GameStatics {
     private GameController gameController;
     private Resources resources;
 
+
     public GameStatics(Resources resources, int lvl, GameController gameController) {
-        lives = Global.getSTARTING_LIVES();
+        Global global = Global.getInstance();
+        lives = global.getSTARTING_LIVES();
         if(lvl == 1) {remainingAsteroids = Global.getASTEROIDS_LEVEL1();}
         else if(lvl == 2) {remainingAsteroids = Global.getASTEROIDS_LEVEL2();}
         else if(lvl == 3) {remainingAsteroids = Global.getASTEROIDS_LEVEL3();}
@@ -29,6 +31,7 @@ public class GameStatics {
         this.lvl = lvl;
         lost = false;
         finished = false;
+        global.finish(false);
         this.gameController = gameController;
         this.resources = resources;
     }
@@ -37,17 +40,28 @@ public class GameStatics {
         actualTime = System.nanoTime();
         if(lives == 0) {
             lost = true;
+            Global global = Global.getInstance();
+            global.finish(true);
         } else {
             --lives;
         }
     }
+
 
     public void decreaseAsteroids() {
         actualTime = System.nanoTime();
         --remainingAsteroids;
         if (remainingAsteroids == 0) {
             finished = true;
+            Global global = Global.getInstance();
+            global.finish(true);
         }
+    }
+
+    public void finish() {
+        finished = true;
+        Global global = Global.getInstance();
+        global.finish(true);
     }
 
     public int getAsteroids() {return remainingAsteroids;}

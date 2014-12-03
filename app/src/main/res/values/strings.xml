@@ -11,5 +11,9 @@
     <string name="title_activity_game_support">GameSupport</string>
     <string name="title_activity_lost">Lost</string>
     <string name="title_activity_clear">Clear</string>
+    <string name="preference_file_key">com.pol.pew.highscores</string>
+    <string name="saved_high_score_1">HighScore1</string>
+    <string name="saved_high_score_2">HighScore2</string>
+    <string name="saved_high_score_3">HighScore3</string>
 
 </resources>

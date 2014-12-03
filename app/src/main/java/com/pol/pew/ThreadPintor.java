@@ -31,8 +31,8 @@ public class ThreadPintor extends Thread {
 
     @Override
     public void run() {
-
-        while (state == RUNNING) {
+        Global global = Global.getInstance();
+        while (state == RUNNING && !global.isFinished()) {
             beforeTime = System.nanoTime();
 
             gameController.Update();

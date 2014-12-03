@@ -8,6 +8,11 @@ public class Global {
     private static Global global = new Global();
     private int level = 1;
     private int score = 0;
+    private boolean finished = false;
+
+
+
+    private boolean explotat = false;
 
     private static GameSupport gameSupport = new GameSupport();
 
@@ -90,4 +95,18 @@ public class Global {
         gameSupport = gameSupportt;
     }
 
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void finish(boolean finished) {
+        this.finished = finished;
+    }
+    public void setExplotat(boolean explotat) {
+        this.explotat = explotat;
+    }
+
+    public boolean getExplotat() {
+        return explotat;
+    }
 }

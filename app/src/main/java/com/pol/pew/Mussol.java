@@ -28,6 +28,8 @@ public class Mussol {
     private Resources resources;
     private GameController gameController;
 
+    private Global global;
+
     ArrayList<Pew> pews;
     Bitmap pewBitmap;
     Paint paint;
@@ -162,9 +164,17 @@ public class Mussol {
         drawPews(canvas);
         canvas.save();
         canvas.rotate(directionFace, posx, posy);
-        if(!alive) bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.boom);
-        else bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.mussol);
-        bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
+        global = Global.getInstance();
+        if(!alive || global.isFinished()) {
+            bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.boom);
+            bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL()+20, Global.getMIDA_MUSSOL()+20, true);
+            if(global.isFinished()) global.setExplotat(true);
+        }
+        else {
+            global.setExplotat(true);
+            bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.mussol);
+            bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
+        }
         canvas.drawBitmap(bitmap, posx - bitmap.getWidth() / 2, posy - bitmap.getHeight() / 2, paint);
         alive = true;
         canvas.restore();

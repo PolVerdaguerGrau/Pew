@@ -49,6 +49,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
+
     @Override
     public void surfaceCreated(SurfaceHolder arg0) {
         if (threadPintor.state == ThreadPintor.PAUSED) {

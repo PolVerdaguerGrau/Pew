@@ -19,10 +19,20 @@ public class Clear extends Activity {
         setContentView(R.layout.activity_clear);
         Global global = Global.getInstance();
         int score = global.getScore();
-        TextView t = new TextView(this);
-        t = (TextView)findViewById(R.id.text);
+        TextView t = (TextView)findViewById(R.id.text);
         t.setText(String.valueOf(score));
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        for(int i = 1; i <= 3; ++i) {
+            String actualString = "HighScore" + i;
+            int iScore = sharedPreferences.getInt(actualString, 0);
+            if(iScore <= score) {
+
+                editor.putInt(actualString, score);
+                score = iScore;
+                editor.commit();
+            }
+        }
     }
 
 

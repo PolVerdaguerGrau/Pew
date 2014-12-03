@@ -94,7 +94,6 @@ public class GameController {
 
     public void Draw(Canvas canvas){
         if(canvas!=null) {
-
             if (!gameStatics.isLost() && !gameStatics.isFinished()) {
 
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
@@ -106,14 +105,26 @@ public class GameController {
                 canvas.drawText("Asteroids: " + aster, screenWidth - 300, 100, textPaint);
                 for (int i = -1; i <= gameStatics.getLives() - 2; ++i) {
                     canvas.drawBitmap(bitmapLives, screenWidth / 2 + i * 30, 100, null);
-                }
-                ;
+                };
             } else if (gameStatics.isLost()) {
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
-
-                gameSupport = Global.getGameSupport();
-
-                gameSupport.retry(level);
+                canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
+                canvas.drawBitmap(background, 0, 0, null);
+                asteroids.draw(canvas);
+                mussol.draw(canvas, stdPaint);
+                canvas.drawText("Level: " + String.valueOf(level), 50, 100, textPaint);
+                String aster = String.valueOf(gameStatics.getAsteroids());
+                canvas.drawText("Asteroids: " + aster, screenWidth - 300, 100, textPaint);
+                Global global = Global.getInstance();
+                if(global.getExplotat()) {
+                    long inittime = System.nanoTime() / 1000000000;
+                    long currenttime = inittime;
+                    while (currenttime - inittime <= 1) {
+                        currenttime = System.nanoTime() / 1000000000;
+                    }
+                    gameSupport = Global.getGameSupport();
+                    gameSupport.retry(level);
+                }
 
             } else if (gameStatics.isFinished()) {
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
