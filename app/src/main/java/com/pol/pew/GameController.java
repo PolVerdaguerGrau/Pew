@@ -101,30 +101,28 @@ public class GameController {
                 canvas.drawBitmap(background, 0, 0, null);
                 asteroids.draw(canvas);
                 mussol.draw(canvas, stdPaint);
-                canvas.drawText("Level: "+ String.valueOf(level), 50, 100, textPaint);
+                canvas.drawText("Level: " + String.valueOf(level), 50, 100, textPaint);
                 String aster = String.valueOf(gameStatics.getAsteroids());
-                canvas.drawText("Asteroids: " + aster, screenWidth-300, 100, textPaint);
-                for (int i = -1; i <= gameStatics.getLives()-2; ++i) {
-                    canvas.drawBitmap(bitmapLives, screenWidth/2+i*30, 100, null);
-                };
+                canvas.drawText("Asteroids: " + aster, screenWidth - 300, 100, textPaint);
+                for (int i = -1; i <= gameStatics.getLives() - 2; ++i) {
+                    canvas.drawBitmap(bitmapLives, screenWidth / 2 + i * 30, 100, null);
+                }
+                ;
             } else if (gameStatics.isLost()) {
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
 
                 gameSupport = Global.getGameSupport();
 
-               gameSupport.retry(level);
+                gameSupport.retry(level);
 
             } else if (gameStatics.isFinished()) {
-                    canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
-                    finished = "LEVEL CLEAR";
-                    canvas.drawText(finished, 100, 200, textPaint);
-                    canvas.drawText(String.valueOf(level), 150, 200, textPaint);
-                    String lives = String.valueOf(gameStatics.getLives());
-                    canvas.drawText(lives, 100, 400, textPaint);
-                    String points = String.valueOf(gameStatics.getPunctuation());
-                    canvas.drawText(points, 100, 300, textPaint);
-                }
+                canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
+                gameSupport = Global.getGameSupport();
+                int lives = gameStatics.getLives();
+                int time = gameStatics.getTime();
+                gameSupport.lvlClear(level, lives, time);
             }
+        }
     }
 
     public void setSurfaceDimensions(int width, int height) {

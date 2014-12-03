@@ -24,14 +24,22 @@ public class GameSupport extends Activity {
         return true;
     }
 
-
-
     public void retry(int lvl) {
         Intent intent = new Intent(this, Lost.class);
-        Global glob = Global.getInstance();
-        glob.setLevel(lvl);
+        Global global = Global.getInstance();
+        global.setLevel(lvl);
         startActivity(intent);
     }
+
+    public void lvlClear(int lvl, int lives, int time) {
+        Intent intent = new Intent(this, Clear.class);
+        Global global = Global.getInstance();
+        int asteroids = global.getAsteroids(lvl);
+        int score = asteroids + (((asteroids*lives)-time > 0) ? (asteroids*lives)-time : 0);
+        global.setScore(score);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

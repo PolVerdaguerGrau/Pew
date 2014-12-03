@@ -37,6 +37,11 @@
             android:label="@string/title_activity_lost"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>
+        <activity
+            android:name=".Clear"
+            android:label="@string/title_activity_clear"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+        </activity>
     </application>
 
 </manifest>

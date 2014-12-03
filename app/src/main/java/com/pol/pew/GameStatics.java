@@ -52,7 +52,7 @@ public class GameStatics {
 
     public int getAsteroids() {return remainingAsteroids;}
 
-    public int getPunctuation() {
+    public int getTime() {
         return (int)((actualTime/100000000/1000-startingTime/1000000000/1000));
     }
 

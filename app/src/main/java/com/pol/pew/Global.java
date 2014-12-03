@@ -7,12 +7,9 @@ public class Global {
 
     private static Global global = new Global();
     private int level = 1;
-
+    private int score = 0;
 
     private static GameSupport gameSupport = new GameSupport();
-
-
-
 
     private static int X_PANTALLA = 1050;
     private static int Y_PANTALLA = 1750;
@@ -57,6 +54,21 @@ public class Global {
         this.level = level;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getAsteroids(int lvl) {
+        if(lvl == 1) return ASTEROIDS_LEVEL1;
+        else if(lvl == 2) return ASTEROIDS_LEVEL2;
+        else {
+            return calcAsteroids(lvl*2);
+        }
+    }
 
     public static int getASTEROIDS_LEVEL2() {
         return ASTEROIDS_LEVEL2;

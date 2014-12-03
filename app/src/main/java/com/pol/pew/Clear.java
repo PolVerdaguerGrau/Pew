@@ -1,26 +1,35 @@
 package com.pol.pew;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
-public class MainPage extends Activity {
+public class Clear extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page);
+        setContentView(R.layout.activity_clear);
+        Global global = Global.getInstance();
+        int score = global.getScore();
+        TextView t = new TextView(this);
+        t = (TextView)findViewById(R.id.text);
+        t.setText(String.valueOf(score));
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_page, menu);
+        getMenuInflater().inflate(R.menu.clear, menu);
         return true;
     }
 
@@ -35,15 +44,14 @@ public class MainPage extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void lvls(View view) {
-        Intent i = new Intent(this, Levels.class);
-        startActivity(i);
+    public void mainpage(View view) {
+        Intent intent = new Intent(this, MainPage.class);
+        startActivity(intent);
     }
 
-    public void highScores(View view) {
-        Intent i = new Intent(this, HighScores.class);
-        startActivity(i);
+    public void retry(View view) {
+        Intent intent = new Intent(this, GameSupport.class);
+        startActivity(intent);
     }
 
     public void exit(View view) {
