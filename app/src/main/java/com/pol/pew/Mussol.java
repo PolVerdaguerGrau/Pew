@@ -117,11 +117,9 @@ public class Mussol {
                 alive = false;
                 asteroidController.die(asteroid);
                 gameController.mussolCollides();
-                gameController.asteroidBreaks();
             } else if( (posx-radiMussol >= asteroid.getPosx() - asteroid.getMida()/2) && (posx-radiMussol <= asteroid.getPosx() + asteroid.getMida()/2) && (posy-radiMussol >= asteroid.getPosy() - asteroid.getMida()/2) && (posy-radiMussol <= asteroid.getPosy() + asteroid.getMida()/2)) {
                 alive = false;
                 asteroidController.die(asteroid);
-                gameController.asteroidBreaks();
                 gameController.mussolCollides();
             }
         }
@@ -153,7 +151,12 @@ public class Mussol {
     public void drawPews(Canvas canvas) {
         Iterator<Pew> ite =  pews.iterator();
         while(ite.hasNext()) {
-            Pew pew = ite.next();
+            Pew pew = null;
+            try {
+                pew = ite.next();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             if(pew.isAlive()) {
                 pew.draw(canvas, pew.posx, pew.posy, paint);
             }

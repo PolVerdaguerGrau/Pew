@@ -11,13 +11,24 @@ android:gravity="center_vertical"
 
 
     <ImageView
+        android:id="@+id/select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/selectlevel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
         android:id="@+id/lvl1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/select"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:onClick="lvl1"
-        android:src="@drawable/levelone"/>
+        android:layout_marginTop="70dp"
+        android:clickable="true"
+        android:onClick="lvl2"
+        android:src="@drawable/levelone" />
 
     <ImageView
         android:id="@+id/lvl2"
@@ -25,10 +36,9 @@ android:gravity="center_vertical"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lvl1"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_marginTop="40dp"
         android:clickable="true"
-        android:onClick="lvl2"
+        android:onClick="lvl1"
         android:src="@drawable/leveltwo" />
 
     <ImageView
@@ -37,10 +47,20 @@ android:gravity="center_vertical"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lvl2"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_marginTop="40dp"
         android:clickable="true"
         android:onClick="lvl3"
         android:src="@drawable/levelthree" />
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lvl3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:clickable="true"
+        android:onClick="mainpage"
+        android:src="@drawable/back" />
 
 </RelativeLayout>

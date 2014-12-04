@@ -59,9 +59,13 @@ public class GameController {
         textPaint.setColor(Color.LTGRAY);
         textPaint.setTextSize(40);
 
-        background = BitmapFactory.decodeResource(resources, R.drawable.background);
+        try {
+            background = BitmapFactory.decodeResource(resources, R.drawable.background);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         bitmapLives = BitmapFactory.decodeResource(resources, R.drawable.littlelive);
-        bitmapLives = Bitmap.createScaledBitmap(bitmapLives, 25, 25, true);
+        bitmapLives = Bitmap.createScaledBitmap(bitmapLives, 30, 30, true);
 
         setSurfaceDimensions(240, 160);
 
@@ -121,17 +125,12 @@ public class GameController {
                 String aster = String.valueOf(gameStatics.getAsteroids());
                 canvas.drawText("Asteroids: " + aster, screenWidth - 300, 100, textPaint);
                 ++draws;
-                System.out.println("DRAWS "+draws);
                 if(draws >= 1 && explotat) {
-                    System.out.println("bucle abans");
-
                     long inittime = System.nanoTime()/100000;
                     long currenttime = inittime;
                     while (currenttime - inittime <= 1 && global.getExplotat()) {
                         currenttime = System.nanoTime()/100000;
-                        System.out.println("bucle");
                     }
-                    System.out.println("bucle fora");
 
                     gameSupport = Global.getGameSupport();
                         gameSupport.retry(level);

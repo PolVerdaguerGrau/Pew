@@ -59,26 +59,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         } else {
             threadPintor.start();
         }
-        /*this.setOnTouchListener(new OnSwipeTouchListener(context) {
-            @Override
-            public void onSwipeLeft(float diff) {
-                gameController.rotateRight(diff);
-                System.out.println("crido a swipeRIGHT ---->");
-
-            }
-            @Override
-            public void onSwipeRight(float diff) {
-                gameController.rotateLeft(diff);
-            }
-            @Override
-            public void onSwipeTop() {
-                gameController.gas();
-            }
-            @Override
-            public void onSwipeBottom() {
-
-            }
-        });*/
     }
 
     @Override
@@ -127,11 +107,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                    gameController.gas();
                    break;
                }
-               if (dX > 5) {
+               if (dX > 1) {
                    gameController.rotateRight(-dX);
                    break;
                }
-               if (dX < -5) {
+               if (dX < -1) {
                    gameController.rotateLeft(dX);
                    break;
                }

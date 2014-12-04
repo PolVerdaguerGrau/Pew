@@ -15,5 +15,6 @@
     <string name="saved_high_score_1">HighScore1</string>
     <string name="saved_high_score_2">HighScore2</string>
     <string name="saved_high_score_3">HighScore3</string>
+    <string name="title_activity_waiting_screen">WaitingScreen</string>
 
 </resources>

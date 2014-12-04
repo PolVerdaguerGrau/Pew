@@ -19,32 +19,32 @@
 
 
     <ImageView
-        android:id="@+id/btnMainPage"
+        android:id="@+id/btnRetry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgLogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:clickable="true"
-        android:onClick="mainpage"
-        android:src="@drawable/home" />
+        android:onClick="retry"
+        android:src="@drawable/retry" />
 
     <ImageView
-        android:id="@+id/btnRetry"
+        android:id="@+id/btnMainPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnMainPage"
+        android:layout_below="@+id/btnRetry"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:clickable="true"
-        android:onClick="retry"
-        android:src="@drawable/retry" />
+        android:onClick="mainpage"
+        android:src="@drawable/home" />
 
     <ImageView
         android:id="@+id/btnExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnRetry"
+        android:layout_below="@+id/btnMainPage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:clickable="true"

@@ -1,5 +1,7 @@
 package com.pol.pew;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by pol on 26/11/14.
  */
@@ -16,6 +18,8 @@ public class Global {
 
     private static GameSupport gameSupport = new GameSupport();
 
+
+
     private static int X_PANTALLA = 1050;
     private static int Y_PANTALLA = 1750;
     private static int STANDARD_VELOCITY_PEW = 20;
@@ -24,9 +28,13 @@ public class Global {
     private static int MUSSOL_SIZE = 70;
     private static int FIRST_SPLIT = 4;
     private static int SECOND_SPLIT = 2;
-    private static int ASTEROIDS_LEVEL1 = calcAsteroids(10);
-    private static int ASTEROIDS_LEVEL2 = calcAsteroids(4);
+    private static int ASTEROIDS_LEVEL2 = calcAsteroids(10);
+    private static int ASTEROIDS_LEVEL1 = calcAsteroids(4);
     private static int ASTEROIDS_LEVEL3 = calcAsteroids(6);
+    private Bitmap asteroidBitmap;
+    private Bitmap asteroidMigBitmap;
+    private Bitmap asteroidXicBitmap;
+
 
     private static int calcAsteroids(int asteroids) {
         return asteroids+asteroids*FIRST_SPLIT+asteroids*FIRST_SPLIT*SECOND_SPLIT;
@@ -108,5 +116,12 @@ public class Global {
 
     public boolean getExplotat() {
         return explotat;
+    }
+    public static void setX_PANTALLA(int x_PANTALLA) {
+        X_PANTALLA = x_PANTALLA;
+    }
+
+    public static void setY_PANTALLA(int y_PANTALLA) {
+        Y_PANTALLA = y_PANTALLA;
     }
 }

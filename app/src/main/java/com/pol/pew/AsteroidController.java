@@ -39,7 +39,7 @@ public class AsteroidController {
         yPantalla = global.getY_PANTALLA();
         paint = new Paint();
         this.gameController = gameController;
-        if(lvl == 1) {
+        if(lvl == 2) {
             asteroids = new ArrayList<Asteroid>();
             int x, y, dir;
             double v;
@@ -54,7 +54,7 @@ public class AsteroidController {
             }
 
         }
-        else if(lvl == 2) {
+        else if(lvl == 1) {
             asteroids = new ArrayList<Asteroid>();
             int x, y, dir;
             double v;

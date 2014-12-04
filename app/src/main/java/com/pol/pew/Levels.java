@@ -12,22 +12,26 @@ public class Levels extends Activity {
 
 
 
-    public void lvl1(View view) {
-        Intent intent = new Intent(this, GameSupport.class);
-        Global glob = Global.getInstance();
-        glob.setLevel(1);
-        startActivity(intent);
-    }
-
     public void lvl2(View view) {
-        Intent intent = new Intent(this, GameSupport.class);
+        Intent intent = new Intent(this, WaitingScreen.class);
         Global glob = Global.getInstance();
         glob.setLevel(2);
         startActivity(intent);
     }
 
+    public void lvl1(View view) {
+        System.out.println("LVL");
+        Intent intent = new Intent(this, WaitingScreen.class);
+        Global glob = Global.getInstance();
+        glob.setLevel(1);
+        startActivity(intent);
+
+        System.out.println("STARTACTIVITY");
+
+    }
+
     public void lvl3(View view) {
-        Intent intent = new Intent(this, GameSupport.class);
+        Intent intent = new Intent(this, WaitingScreen.class);
         Global glob = Global.getInstance();
         glob.setLevel(3);
         startActivity(intent);
@@ -57,5 +61,10 @@ public class Levels extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void mainpage(View view) {
+        Intent intent = new Intent(this, MainPage.class);
+        startActivity(intent);
     }
 }
