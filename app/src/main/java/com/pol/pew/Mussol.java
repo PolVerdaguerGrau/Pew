@@ -42,14 +42,11 @@ public class Mussol {
         minPantalla = 0 +radiMussol;
         posx = maxxPantalla/2;
         posy = maxyPantalla/2;
-
-        //if(!global.mussolIsNull()) {
-            bitmap = global.getMussolBitmap();
-        //} else {
-          if(bitmap == null) {
-            bitmap = BitmapFactory.decodeResource(resources, R.drawable.mussol);
-            bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
-            global.setMussolBitmap(bitmap);
+        bitmap = global.getMussolBitmap();
+        if(bitmap == null) {
+        bitmap = BitmapFactory.decodeResource(resources, R.drawable.mussol);
+        bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
+        global.setMussolBitmap(bitmap);
         }
 
         velocityX = 0;
@@ -103,8 +100,7 @@ public class Mussol {
         while(ite.hasNext()) {
             Pew pew = ite.next();
             if(pew.isAlive()) {
-                Iterator<Asteroid> asteroidIterator =  asteroidController.getAsteroids().iterator();
-                while(asteroidIterator.hasNext()) {
+                for (Iterator<Asteroid> asteroidIterator = asteroidController.getAsteroids().iterator();asteroidIterator.hasNext(); ) {
                     Asteroid asteroid = asteroidIterator.next();
                     if(pew.posx >= asteroid.getPosx()-asteroid.getMida()/2 && pew.posx  <= asteroid.getPosx()+asteroid.getMida()/2) {
                         if(pew.posy >= asteroid.getPosy()-asteroid.getMida()/2 && pew.posy <= asteroid.getPosy()+asteroid.getMida()/2) {
@@ -162,14 +158,8 @@ public class Mussol {
 
 
     public void drawPews(Canvas canvas) {
-        Iterator<Pew> ite =  pews.iterator();
-        while(ite.hasNext()) {
-            Pew pew = null;
-            try {
-                pew = ite.next();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        for (Iterator<Pew> it = pews.iterator(); it.hasNext(); ) {
+            Pew pew = it.next();
             if(pew.isAlive()) {
                 pew.draw(canvas, pew.posx, pew.posy, paint);
             }

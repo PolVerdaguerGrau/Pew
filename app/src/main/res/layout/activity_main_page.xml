@@ -34,21 +34,43 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/btnPlay"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:clickable="true"
             android:onClick="highScores"
             android:src="@drawable/high" />
-
         <ImageView
-            android:id="@+id/btnExit"
+            android:id="@+id/controls"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btnHigh"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:clickable="true"
-            android:onClick="exit"
-            android:src="@drawable/exit" />
+            android:onClick="controls"
+            android:src="@drawable/controls" />
+
+        <!--ImageView
+            android:id="@+id/tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/controls"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:clickable="true"
+            android:onClick="tips"
+            android:src="@drawable/tips" />-->
+
+
+        <ImageView
+                android:id="@+id/btnExit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/controls"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:clickable="true"
+                android:onClick="exit"
+                android:src="@drawable/exit" />
 
 
 

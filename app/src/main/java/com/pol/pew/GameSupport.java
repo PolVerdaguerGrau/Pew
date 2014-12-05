@@ -13,6 +13,7 @@ public class GameSupport extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_support);
+        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
         Global.setGameSupport(this);
     }
 
@@ -52,6 +53,11 @@ public class GameSupport extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, Levels.class);
+        startActivity(intent);
     }
 }
 

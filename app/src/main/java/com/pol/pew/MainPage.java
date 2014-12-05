@@ -22,6 +22,7 @@ public class MainPage extends Activity {
         display.getSize(size);
         global.setX_PANTALLA(size.x);
         global.setY_PANTALLA(size.y);
+        global.setIntent(this.getIntent());
     }
 
 
@@ -61,5 +62,17 @@ public class MainPage extends Activity {
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    public void controls(View view) {
+        Intent i = new Intent(this, Help.class);
+        startActivity(i);
+    }
+
+
+    public void tips(View view) {
+      //  Intent i = new Intent(this, Tips.class);
+        //startActivity(i);
+
     }
 }

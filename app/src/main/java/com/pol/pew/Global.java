@@ -1,5 +1,6 @@
 package com.pol.pew;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 
 /**
@@ -32,6 +33,8 @@ public class Global {
     private static int ASTEROIDS_LEVEL3 = calcAsteroids(6);
     private Bitmap asteroidBitmap;
 
+
+    private Intent intent;
     private Bitmap pewBitmap;
 
     private Bitmap LivesBitmap;
@@ -199,5 +202,13 @@ public class Global {
 
     public void setLastScore(int lastScore) {
         this.lastScore = lastScore;
+    }
+
+    public Intent getIntent() {
+        return intent;
+    }
+
+    public void setIntent(Intent intent) {
+        this.intent = intent;
     }
 }
