@@ -36,8 +36,6 @@ public class GameSupport extends Activity {
         Intent intent = new Intent(this, Clear.class);
         Global global = Global.getInstance();
         int asteroids = global.getAsteroids(lvl);
-        System.out.println("lives "+lives);
-        System.out.println("time "+time);
         int score = asteroids + (((asteroids*lives)-time/10 > 0) ? (asteroids*lives)-time/10 : 0);
         global.setScore(score);
         startActivity(intent);

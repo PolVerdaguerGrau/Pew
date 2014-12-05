@@ -51,7 +51,8 @@ public class MainPage extends Activity {
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if((sharedPreferences.getInt(getString(R.string.level), -1)) == -1){
-            editor.putInt("level",1);
+            editor.putInt(getString(R.string.level),1);
+            editor.commit();
             Global.getInstance().setLevel(-1);
             Intent i = new Intent(this, GameSupport.class);
             startActivity(i);
