@@ -75,7 +75,10 @@ public class Clear extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 
     public void mainpage(View view) {
         Intent intent = new Intent(this, MainPage.class);

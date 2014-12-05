@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -70,9 +71,33 @@ public class HighScores extends Activity {
     }
 
     public void clear(View view) {
+        ImageView sure = (ImageView) findViewById(R.id.sure);
+        ImageView yes = (ImageView) findViewById(R.id.yes);
+        ImageView no = (ImageView) findViewById(R.id.no);
+        ImageView clear = (ImageView) findViewById(R.id.clear);
+        ImageView back = (ImageView) findViewById(R.id.back);
+        sure.setVisibility(View.VISIBLE);
+        yes.setVisibility(View.VISIBLE);
+        no.setVisibility(View.VISIBLE);
+        clear.setVisibility(View.INVISIBLE);
+        back.setVisibility(View.INVISIBLE);
 
     }
-    public void sure() {
+
+    public void no(View view) {
+        ImageView sure = (ImageView) findViewById(R.id.sure);
+        ImageView yes = (ImageView) findViewById(R.id.yes);
+        ImageView no = (ImageView) findViewById(R.id.no);
+        ImageView clear = (ImageView) findViewById(R.id.clear);
+        ImageView back = (ImageView) findViewById(R.id.back);
+        sure.setVisibility(View.INVISIBLE);
+        yes.setVisibility(View.INVISIBLE);
+        no.setVisibility(View.INVISIBLE);
+        clear.setVisibility(View.VISIBLE);
+        back.setVisibility(View.VISIBLE);
+    }
+
+    public void yes(View view) {
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         for(int i = 1; i <= 5; ++i) {
@@ -103,6 +128,11 @@ public class HighScores extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void mainpage(View view) {
+        Intent intent = new Intent(this, MainPage.class);
+        startActivity(intent);
     }
 
     @Override

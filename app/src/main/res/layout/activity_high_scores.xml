@@ -72,4 +72,46 @@
         android:src="@drawable/clear"
         android:onClick="clear"/>
 
+    <ImageView
+        android:id="@+id/sure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textView5"
+        android:src="@drawable/sure"
+        android:visibility="invisible"
+        android:clickable="false"/>
+
+    <ImageView
+        android:id="@+id/yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/yes"
+        android:visibility="invisible"
+        android:onClick="yes"
+        android:layout_below="@+id/clear"
+        android:layout_toLeftOf="@+id/textView5"
+        android:layout_toStartOf="@+id/textView5" />
+    <ImageView
+        android:id="@+id/no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/no"
+        android:visibility="invisible"
+        android:onClick="no"
+        android:layout_toEndOf="@+id/textView5"
+        android:layout_alignTop="@+id/yes"
+        android:layout_toRightOf="@+id/textView5" />
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clear"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:onClick="mainpage"
+        android:src="@drawable/back" />
 </RelativeLayout>
