@@ -1,7 +1,5 @@
 package com.pol.pew;
 
-import android.content.res.Resources;
-
 /**
  * Created by pol on 02/12/14.
  */
@@ -16,11 +14,9 @@ public class GameStatics {
     private double actualTime;
     private boolean lost;
     private boolean finished;
-    private GameController gameController;
-    private Resources resources;
 
 
-    public GameStatics(Resources resources, int lvl, GameController gameController) {
+    public GameStatics(int lvl, GameController gameController) {
         Global global = Global.getInstance();
         lives = global.getSTARTING_LIVES();
         if(lvl == 1) {remainingAsteroids = Global.getASTEROIDS_LEVEL1();}
@@ -32,8 +28,6 @@ public class GameStatics {
         lost = false;
         finished = false;
         global.finish(false);
-        this.gameController = gameController;
-        this.resources = resources;
     }
 
     public void decreaseLives() {

@@ -30,44 +30,59 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/String0"
             android:layout_below="@+id/score"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true" />
+
+
+        <EditText
+            android:id="@+id/textEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="50dp"
+            android:minHeight="2dp"
+            android:layout_below="@id/text"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:maxLength="3"
+            android:inputType="textCapCharacters"/>
+
+    <ImageView
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:onClick="save"
+        android:src="@drawable/save"
+        android:layout_below="@+id/textEdit"
+        android:layout_alignRight="@+id/score"
+        android:layout_alignEnd="@+id/score" />
 
 
     <ImageView
             android:id="@+id/btnMainPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text"
+            android:layout_below="@+id/save"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:clickable="true"
             android:onClick="mainpage"
             android:src="@drawable/home" />
 
         <ImageView
-            android:id="@+id/btnRetry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnMainPage"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:clickable="true"
-            android:onClick="retry"
-            android:src="@drawable/retry" />
-
-        <ImageView
             android:id="@+id/btnExit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btnRetry"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:clickable="true"
             android:onClick="exit"
-            android:src="@drawable/exit" />
+            android:src="@drawable/exit"
+            android:layout_below="@+id/btnMainPage"
+            android:layout_alignLeft="@+id/btnMainPage"
+            android:layout_alignStart="@+id/btnMainPage" />
 
 
 

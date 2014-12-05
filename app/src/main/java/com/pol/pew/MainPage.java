@@ -50,6 +50,8 @@ public class MainPage extends Activity {
     }
 
     public void highScores(View view) {
+        Global global = Global.getInstance();
+        global.setLastScore(0);
         Intent i = new Intent(this, HighScores.class);
         startActivity(i);
     }

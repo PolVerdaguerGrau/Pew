@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -19,23 +21,41 @@ public class Clear extends Activity {
         setContentView(R.layout.activity_clear);
         Global global = Global.getInstance();
         int score = global.getScore();
-        TextView t = (TextView)findViewById(R.id.text);
+        TextView t = (TextView) findViewById(R.id.text);
         t.setText(String.valueOf(score));
+        EditText text = (EditText) findViewById(R.id.textEdit);
+        text.setBackgroundColor(Color.DKGRAY);
+        text.setTextColor(Color.WHITE);
+    }
+
+    public void save(View view) {
+        Global global = Global.getInstance();
+        int score = global.getScore();
+        EditText text = (EditText)findViewById(R.id.textEdit);
+        String name = text.getText().toString();
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        for(int i = 1; i <= 3; ++i) {
+        boolean changed = false;
+        for(int i = 1; i <= 5; ++i) {
             String actualString = "HighScore" + i;
+            String actualName = "Name" + i;
             int iScore = sharedPreferences.getInt(actualString, 0);
+            String iName = sharedPreferences.getString(actualName, "PEW");
             if(iScore <= score) {
-
+                if(!changed) {
+                    changed = true;
+                    Global.getInstance().setLastScore(i);
+                }
                 editor.putInt(actualString, score);
+                editor.putString(actualName, name);
                 score = iScore;
+                name = iName;
                 editor.commit();
             }
         }
+        Intent intent = new Intent(this, HighScores.class);
+        startActivity(intent);
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -54,6 +74,9 @@ public class Clear extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
     public void mainpage(View view) {
         Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);

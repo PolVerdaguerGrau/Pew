@@ -27,7 +27,7 @@ android:gravity="center_vertical"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
         android:clickable="true"
-        android:onClick="lvl2"
+        android:onClick="lvl1"
         android:src="@drawable/levelone" />
 
     <ImageView
@@ -38,7 +38,7 @@ android:gravity="center_vertical"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:clickable="true"
-        android:onClick="lvl1"
+        android:onClick="lvl2"
         android:src="@drawable/leveltwo" />
 
     <ImageView

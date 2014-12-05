@@ -25,9 +25,6 @@ public class Levels extends Activity {
         Global glob = Global.getInstance();
         glob.setLevel(1);
         startActivity(intent);
-
-        System.out.println("STARTACTIVITY");
-
     }
 
     public void lvl3(View view) {

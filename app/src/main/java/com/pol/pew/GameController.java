@@ -19,10 +19,8 @@ public class GameController {
 
     Paint textPaint;
 
-    private String finished;
 
     private Resources resources;
-    private Context context;
     private GameSupport gameSupport;
 
     AsteroidController asteroids;
@@ -43,10 +41,9 @@ public class GameController {
     public void Init(Context context){
         Global glob = Global.getInstance();
         this.level = glob.getLevel();
-        this.context = context;
         this.resources = context.getResources();
 
-        gameStatics = new GameStatics(resources, level,  this);
+        gameStatics = new GameStatics(level,  this);
 
         asteroids = new AsteroidController(resources,this, level, screenWidth, screenHeight);
         mussol = new Mussol(resources, this);
@@ -64,8 +61,13 @@ public class GameController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        bitmapLives = BitmapFactory.decodeResource(resources, R.drawable.littlelive);
-        bitmapLives = Bitmap.createScaledBitmap(bitmapLives, 30, 30, true);
+
+        bitmapLives = glob.getLivesBitmap();
+        if(bitmapLives == null) {
+            bitmapLives = BitmapFactory.decodeResource(resources, R.drawable.littlelive);
+            bitmapLives = Bitmap.createScaledBitmap(bitmapLives, 30, 30, true);
+            glob.setLivesBitmap(bitmapLives);
+        }
 
         setSurfaceDimensions(240, 160);
 
@@ -101,6 +103,7 @@ public class GameController {
 
     public void Draw(Canvas canvas){
         if(canvas!=null) {
+            gameStatics.finish();//debuuuuggggg
             if (!gameStatics.isLost() && !gameStatics.isFinished()) {
 
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
@@ -112,7 +115,7 @@ public class GameController {
                 canvas.drawText("Asteroids: " + aster, screenWidth - 300, 100, textPaint);
                 for (int i = -1; i <= gameStatics.getLives() - 2; ++i) {
                     canvas.drawBitmap(bitmapLives, screenWidth / 2 + i * 30, 100, null);
-                };
+                }
             } else if (gameStatics.isLost()) {
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);

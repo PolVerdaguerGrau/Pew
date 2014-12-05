@@ -35,14 +35,22 @@ public class Mussol {
     Paint paint;
 
     public Mussol (Resources resources, GameController gameController) {
+        global = Global.getInstance();
         maxxPantalla = Global.getX_PANTALLA()-15;
         maxyPantalla = Global.getY_PANTALLA()-15;
         radiMussol = Global.getMIDA_MUSSOL()/2;
         minPantalla = 0 +radiMussol;
         posx = maxxPantalla/2;
         posy = maxyPantalla/2;
-        bitmap = BitmapFactory.decodeResource(resources, R.drawable.mussol);
-        bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
+
+        //if(!global.mussolIsNull()) {
+            bitmap = global.getMussolBitmap();
+        //} else {
+          if(bitmap == null) {
+            bitmap = BitmapFactory.decodeResource(resources, R.drawable.mussol);
+            bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
+            global.setMussolBitmap(bitmap);
+        }
 
         velocityX = 0;
         velocityY = 0;
@@ -51,7 +59,12 @@ public class Mussol {
         this.resources = resources;
         this.gameController = gameController;
 
-        pewBitmap = BitmapFactory.decodeResource(resources, R.drawable.pew);
+        pewBitmap = global.getPewBitmap();
+        if(pewBitmap == null) {
+            pewBitmap = BitmapFactory.decodeResource(resources, R.drawable.pew);
+            global.setPewBitmap(pewBitmap);
+        }
+
         paint = new Paint();
         pews = new ArrayList<Pew>();
     }

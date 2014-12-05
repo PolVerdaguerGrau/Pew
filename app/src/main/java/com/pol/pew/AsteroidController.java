@@ -25,16 +25,31 @@ public class AsteroidController {
     private GameController gameController;
 
     public AsteroidController (Resources resources, GameController gameController, int lvl, int screenWidth, int screenHeight) {
-        asteroidBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroid);
-        asteroidBitmap = Bitmap.createScaledBitmap(asteroidBitmap, Global.getSTANDARD_SIZE_ASTEROID(), Global.getSTANDARD_SIZE_ASTEROID(), true);
+        global = Global.getInstance();
 
-        asteroidMigBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroidmig);
-        asteroidMigBitmap = Bitmap.createScaledBitmap(asteroidBitmap, Global.getSTANDARD_SIZE_ASTEROID()/2, Global.getSTANDARD_SIZE_ASTEROID()/2, true);
+        asteroidBitmap = global.getAsteroidBitmap();
+        if(asteroidBitmap == null) {
+            asteroidBitmap = BitmapFactory.decodeResource(resources, R.drawable.asteroid);
+            asteroidBitmap = Bitmap.createScaledBitmap(asteroidBitmap, Global.getSTANDARD_SIZE_ASTEROID(), Global.getSTANDARD_SIZE_ASTEROID(), true);
+            global.setAsteroidBitmap(asteroidBitmap);
+        }
 
-        asteroidXicBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroidxic);
-        asteroidXicBitmap = Bitmap.createScaledBitmap(asteroidBitmap, Global.getSTANDARD_SIZE_ASTEROID()/4, Global.getSTANDARD_SIZE_ASTEROID()/4, true);
+        asteroidMigBitmap = global.getAsteroidMigBitmap();
+        if(asteroidMigBitmap == null) {
+            asteroidMigBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroidmig);
+         asteroidMigBitmap = Bitmap.createScaledBitmap(asteroidBitmap, Global.getSTANDARD_SIZE_ASTEROID()/2, Global.getSTANDARD_SIZE_ASTEROID()/2, true);
+            global.setAsteroidMigBitmap(asteroidMigBitmap);
+        }
 
-        global = new Global();
+
+        asteroidXicBitmap = global.getAsteroidXicBitmap();
+        if(asteroidXicBitmap == null) {
+            asteroidXicBitmap = BitmapFactory.decodeResource(resources,R.drawable.asteroidxic);
+            asteroidXicBitmap = Bitmap.createScaledBitmap(asteroidBitmap, Global.getSTANDARD_SIZE_ASTEROID()/4, Global.getSTANDARD_SIZE_ASTEROID()/4, true);
+            global.setAsteroidXicBitmap(asteroidXicBitmap);
+        }
+
+
         xPantalla = global.getX_PANTALLA();
         yPantalla = global.getY_PANTALLA();
         paint = new Paint();
