@@ -47,6 +47,7 @@ public class MainPage extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+       //lvls
     public void lvls(View view) {
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
