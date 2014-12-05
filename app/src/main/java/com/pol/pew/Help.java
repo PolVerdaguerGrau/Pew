@@ -1,6 +1,7 @@
 package com.pol.pew;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,9 @@ public class Help extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+        Global.getInstance().setLevel(-1);
+        Intent i = new Intent(this, GameSupport.class);
+        startActivity(i);
     }
 
 

@@ -87,6 +87,18 @@ public class AsteroidController {
             }
 
         }
+        else if(lvl == -1) {
+            asteroids = new ArrayList<Asteroid>();
+            int x, y, dir;
+            double v;
+                x =xPantalla/2;
+                y =20;
+                double angle = (Math.atan((double)yPantalla/xPantalla));
+                angle = Math.toDegrees(angle);
+                dir  = (int)angle;
+                v = 2;
+                asteroids.add(new Asteroid(x,y,dir,v,asteroidBitmap));
+            }
         else {
              //LEVEL 3 ONLY WORKING
             asteroids = new ArrayList<Asteroid>();
@@ -101,8 +113,6 @@ public class AsteroidController {
             }
 
         }
-
-
     }
 
     public ArrayList<Asteroid> getAsteroids() {

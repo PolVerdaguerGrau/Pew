@@ -33,7 +33,15 @@ public class Levels extends Activity {
         glob.setLevel(3);
         startActivity(intent);
     }
-    
+
+    public void lvl4(View view) {
+        Intent intent = new Intent(this, WaitingScreen.class);
+        Global glob = Global.getInstance();
+        glob.setLevel(-1);
+        startActivity(intent);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -115,7 +115,11 @@ public class GameController {
                 for (int i = -1; i <= gameStatics.getLives() - 2; ++i) {
                     canvas.drawBitmap(bitmapLives, screenWidth / 2 + i * 41, 100, null);
                 }
-            } else if (gameStatics.isLost()) {
+            } else if(Global.getInstance().getLevel() == -1){
+                asteroids = new AsteroidController(resources,this, level, screenWidth, screenHeight);
+                gameStatics = new GameStatics(level, this);
+            }
+            else if (gameStatics.isLost()) {
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
                 canvas.drawBitmap(background, 0, 0, null);
