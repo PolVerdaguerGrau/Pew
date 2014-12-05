@@ -65,7 +65,7 @@ public class GameController {
         bitmapLives = glob.getLivesBitmap();
         if(bitmapLives == null) {
             bitmapLives = BitmapFactory.decodeResource(resources, R.drawable.littlelive);
-            bitmapLives = Bitmap.createScaledBitmap(bitmapLives, 30, 30, true);
+            bitmapLives = Bitmap.createScaledBitmap(bitmapLives, 40, 40, true);
             glob.setLivesBitmap(bitmapLives);
         }
 
@@ -103,7 +103,6 @@ public class GameController {
 
     public void Draw(Canvas canvas){
         if(canvas!=null) {
-            gameStatics.finish();//debuuuuggggg
             if (!gameStatics.isLost() && !gameStatics.isFinished()) {
 
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
@@ -114,7 +113,7 @@ public class GameController {
                 String aster = String.valueOf(gameStatics.getAsteroids());
                 canvas.drawText("Asteroids: " + aster, screenWidth - 300, 100, textPaint);
                 for (int i = -1; i <= gameStatics.getLives() - 2; ++i) {
-                    canvas.drawBitmap(bitmapLives, screenWidth / 2 + i * 30, 100, null);
+                    canvas.drawBitmap(bitmapLives, screenWidth / 2 + i * 41, 100, null);
                 }
             } else if (gameStatics.isLost()) {
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
