@@ -15,9 +15,10 @@ android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/selectlevel"
+        android:layout_marginTop="80dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:id="@+id/lvl1"
@@ -25,7 +26,7 @@ android:gravity="center_vertical"
         android:layout_height="wrap_content"
         android:layout_below="@+id/select"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="60dp"
         android:clickable="true"
         android:onClick="lvl1"
         android:src="@drawable/levelone" />
@@ -36,7 +37,7 @@ android:gravity="center_vertical"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lvl1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:clickable="true"
         android:onClick="lvl2"
         android:src="@drawable/leveltwo" />
@@ -47,18 +48,29 @@ android:gravity="center_vertical"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lvl2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:clickable="true"
         android:onClick="lvl3"
         android:src="@drawable/levelthree" />
 
     <ImageView
-        android:id="@+id/back"
+        android:id="@+id/train"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lvl3"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:onClick="train"
+        android:src="@drawable/training" />
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/train"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:clickable="true"
         android:onClick="mainpage"
         android:src="@drawable/back" />

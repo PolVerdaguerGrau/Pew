@@ -34,7 +34,7 @@ public class Levels extends Activity {
         startActivity(intent);
     }
 
-    public void lvl4(View view) {
+    public void train(View view) {
         Intent intent = new Intent(this, WaitingScreen.class);
         Global glob = Global.getInstance();
         glob.setLevel(-1);
@@ -72,4 +72,5 @@ public class Levels extends Activity {
         Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);
     }
+
 }

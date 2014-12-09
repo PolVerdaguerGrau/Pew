@@ -26,5 +26,6 @@
     <string name="saved_name_score_5">Name5</string>
     <string name="title_activity_help">Help</string>
     <string name="level">level</string>
+    <string name="title_activity_controls">Controls</string>
 
 </resources>

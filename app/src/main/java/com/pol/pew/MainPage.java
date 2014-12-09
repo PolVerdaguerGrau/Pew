@@ -77,15 +77,8 @@ public class MainPage extends Activity {
         startActivity(intent);
     }
 
-    public void controls(View view) {
+    public void help(View view) {
         Intent i = new Intent(this, Help.class);
         startActivity(i);
-    }
-
-
-    public void tips(View view) {
-      //  Intent i = new Intent(this, Tips.class);
-        //startActivity(i);
-
     }
 }

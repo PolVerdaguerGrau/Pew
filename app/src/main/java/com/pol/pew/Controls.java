@@ -2,22 +2,18 @@ package com.pol.pew;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 
-public class Help extends Activity {
+public class Controls extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
-        TextView t2 = (TextView)findViewById(R.id.textView);
-        t2.setTextColor(Color.WHITE);
+        setContentView(R.layout.activity_controls);
     }
 
 
@@ -40,13 +36,14 @@ public class Help extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void controls(View view) {
-        Intent i = new Intent(this, Controls.class);
+    public void help(View view) {
+        Intent i = new Intent(this, Help.class);
         startActivity(i);
     }
 
-    public void mainpage(View view) {
-        Intent intent = new Intent(this, MainPage.class);
-        startActivity(intent);
+    public void train(View view) {
+        Global.getInstance().setLevel(-1);
+        Intent i = new Intent(this, GameSupport.class);
+        startActivity(i);
     }
 }
