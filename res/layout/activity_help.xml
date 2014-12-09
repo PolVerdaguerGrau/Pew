@@ -1,0 +1,59 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".Help">
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/raid">
+
+        <TextView
+            android:text="Pew is a version of the Asteroids game. You have to avoid the asteroids while firing them. If you collide with one asteroid you may lose one live or more depending on the magnitude of the crash.
+
+                If you destroy all the asteroids in a level you will be able to submit your score. In the training camp you can try the game controls, which are explained pressing the control button below."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" />
+
+        <ImageView
+            android:id="@+id/controls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:clickable="true"
+            android:onClick="controls"
+            android:src="@drawable/controls"
+            android:layout_gravity="center_horizontal" />
+
+        <ImageView
+            android:id="@+id/train"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="train"
+            android:src="@drawable/training"
+            android:layout_above="@+id/back"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/controls"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:clickable="true"
+            android:onClick="mainpage"
+            android:src="@drawable/back" />
+
+    </RadioGroup>
+</ScrollView>

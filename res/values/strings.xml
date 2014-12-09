@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pew</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_high_scores">HighScores</string>
+    <string name="title_activity_game">Game</string>
+    <string name="HighScores">High Scores</string>
+    <string name="title_activity_levels">Levels</string>
+    <string name="title_activity_game_support">GameSupport</string>
+    <string name="title_activity_lost">Lost</string>
+    <string name="title_activity_clear">Clear</string>
+    <string name="preference_file_key">com.pol.pew.highscores</string>
+    <string name="saved_high_score_1">HighScore1</string>
+    <string name="saved_high_score_2">HighScore2</string>
+    <string name="saved_high_score_3">HighScore3</string>
+    <string name="title_activity_waiting_screen">WaitingScreen</string>
+    <string name="String0">0</string>
+    <string name="saved_name_score_1">Name1</string>
+    <string name="saved_name_score_2">Name2</string>
+    <string name="saved_name_score_3">Name3</string>
+    <string name="saved_high_score_4">HighScore4</string>
+    <string name="saved_high_score_5">HighScore5</string>
+    <string name="saved_name_score_4">Name4</string>
+    <string name="saved_name_score_5">Name5</string>
+    <string name="title_activity_help">Help</string>
+    <string name="level">level</string>
+    <string name="title_activity_controls">Controls</string>
+
+</resources>
