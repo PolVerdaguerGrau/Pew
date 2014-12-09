@@ -139,7 +139,7 @@ public class GameController {
                     }
 
                     gameSupport = Global.getGameSupport();
-                        gameSupport.retry(level);
+                        gameSupport.retry(level, gameStatics.getAsteroids());
                 }
 
             } else if (gameStatics.isFinished()) {

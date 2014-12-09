@@ -35,9 +35,12 @@ public class GameSupport extends Activity {
         return true;
     }
 
-    public void retry(int lvl) {
+    public void retry(int lvl, int remaining) {
         Intent intent = new Intent(this, Lost.class);
         Global global = Global.getInstance();
+        int asteroids = global.getAsteroids(lvl);
+        int score = asteroids-remaining;
+        global.setScore(score);
         global.setLevel(lvl);
         startActivity(intent);
     }
@@ -46,7 +49,7 @@ public class GameSupport extends Activity {
         Intent intent = new Intent(this, Clear.class);
         Global global = Global.getInstance();
         int asteroids = global.getAsteroids(lvl);
-        int score = asteroids + (((asteroids*lives)-time/10 > 0) ? (asteroids*lives)-time/10 : 0);
+        int score = asteroids + (((asteroids*lives*lvl)-time/10 > 0) ? (asteroids*lives)-time/10 : 0);
         global.setScore(score);
         startActivity(intent);
     }
