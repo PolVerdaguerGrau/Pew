@@ -31,6 +31,7 @@ public class Global {
     private static int ASTEROIDS_LEVEL2 = calcAsteroids(10);
     private static int ASTEROIDS_LEVEL1 = calcAsteroids(4);
     private static int ASTEROIDS_LEVEL3 = calcAsteroids(6);
+    private static int ASTEROIDS_TRAINING = calcAsteroids(1);
     private Bitmap asteroidBitmap;
 
 
@@ -146,6 +147,10 @@ public class Global {
     public static int getASTEROIDS_LEVEL3() {
         return ASTEROIDS_LEVEL3;
     }
+    public static int getASTEROIDS_TRAINING() {
+        return ASTEROIDS_TRAINING;
+    }
+
 
     public static GameSupport getGameSupport() {
         return gameSupport;

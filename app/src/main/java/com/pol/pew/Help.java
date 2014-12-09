@@ -49,4 +49,9 @@ public class Help extends Activity {
         Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);
     }
+    public void train(View view) {
+        Global.getInstance().setLevel(-1);
+        Intent i = new Intent(this, GameSupport.class);
+        startActivity(i);
+    }
 }

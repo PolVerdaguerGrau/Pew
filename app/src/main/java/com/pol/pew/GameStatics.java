@@ -22,6 +22,7 @@ public class GameStatics {
         if(lvl == 1) {remainingAsteroids = Global.getASTEROIDS_LEVEL1();}
         else if(lvl == 2) {remainingAsteroids = Global.getASTEROIDS_LEVEL2();}
         else if(lvl == 3) {remainingAsteroids = Global.getASTEROIDS_LEVEL3();}
+        else remainingAsteroids = Global.getASTEROIDS_TRAINING();
         fuelUsed = ammoUsed = puntuacio = 0;
         startingTime = System.nanoTime();
         this.lvl = lvl;

@@ -41,9 +41,5 @@ public class Controls extends Activity {
         startActivity(i);
     }
 
-    public void train(View view) {
-        Global.getInstance().setLevel(-1);
-        Intent i = new Intent(this, GameSupport.class);
-        startActivity(i);
-    }
+
 }

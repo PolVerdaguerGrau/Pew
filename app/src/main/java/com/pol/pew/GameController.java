@@ -109,7 +109,7 @@ public class GameController {
                 canvas.drawBitmap(background, 0, 0, null);
                 asteroids.draw(canvas);
                 mussol.draw(canvas, stdPaint);
-                canvas.drawText("Level: " + String.valueOf(level), 50, 100, textPaint);
+                canvas.drawText("Level: " + (level>0 ? String.valueOf(level):"Training Camp"), 50, 100, textPaint);
                 String aster = String.valueOf(gameStatics.getAsteroids());
                 canvas.drawText("Asteroids: " + aster, screenWidth - 300, 100, textPaint);
                 for (int i = -1; i <= gameStatics.getLives() - 2; ++i) {

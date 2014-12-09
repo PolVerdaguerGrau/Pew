@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 
 public class GameSupport extends Activity {
@@ -15,6 +17,14 @@ public class GameSupport extends Activity {
         setContentView(R.layout.activity_game_support);
         Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
         Global.setGameSupport(this);
+        ImageView image = (ImageView)findViewById(R.id.back);
+        if(Global.getInstance().getLevel() == -1) {
+            image.setVisibility(View.VISIBLE);
+            image.setClickable(true);
+        } else {
+            image.setVisibility(View.GONE);
+            image.setClickable(false);
+        }
     }
 
 
@@ -54,7 +64,11 @@ public class GameSupport extends Activity {
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, Levels.class);
+        Intent intent = new Intent(this, MainPage.class);
+        startActivity(intent);
+    }
+    public void lvls(View view) {
+        Intent intent = new Intent(this, Help.class);
         startActivity(intent);
     }
 }
