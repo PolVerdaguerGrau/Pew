@@ -15,9 +15,10 @@
         android:id="@+id/raid">
 
         <TextView
-            android:text="Pew is a version of the Asteroids game. You have to avoid the asteroids while firing them. If you collide with one asteroid you may lose one live or more depending on the magnitude of the crash.
-
-                If you destroy all the asteroids in a level you will be able to submit your score. In the training camp you can try the game controls, which are explained pressing the control button below."
+            android:text="Pew is a version of the arcade game Asteroids.\n
+\nThe main goal is to destroy all the asteroids of a given level without colliding with them.\nIf you collide with one asteroid you may lose one live or more depending on the magnitude of the crash.\n
+\nWhen you end a level, winning or losing it, you will be able to submit your score to the high-scores ranking indicating a 3-word identificator. There's up to 5 places in the ranking!\n
+\nThe game controls are explained pressing the button below.You can experience with them as much as you want in the training camp, as you won't lose nor win there."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView" />

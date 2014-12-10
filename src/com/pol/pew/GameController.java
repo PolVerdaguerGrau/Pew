@@ -54,7 +54,7 @@ public class GameController {
 
         textPaint = new Paint();
         textPaint.setColor(Color.LTGRAY);
-        textPaint.setTextSize(40);
+        textPaint.setTextSize(20);
 
         try {
             background = BitmapFactory.decodeResource(resources, R.drawable.background);
@@ -65,7 +65,7 @@ public class GameController {
         bitmapLives = glob.getLivesBitmap();
         if(bitmapLives == null) {
             bitmapLives = BitmapFactory.decodeResource(resources, R.drawable.littlelive);
-            bitmapLives = Bitmap.createScaledBitmap(bitmapLives, 40, 40, true);
+            bitmapLives = Bitmap.createScaledBitmap(bitmapLives, 20, 20, true);
             glob.setLivesBitmap(bitmapLives);
         }
 
@@ -111,7 +111,7 @@ public class GameController {
                 mussol.draw(canvas, stdPaint);
                 canvas.drawText("Level: " + (level>0 ? String.valueOf(level):"Training Camp"), 50, 100, textPaint);
                 String aster = String.valueOf(gameStatics.getAsteroids());
-                canvas.drawText("Asteroids: " + aster, screenWidth - 300, 100, textPaint);
+                canvas.drawText("Asteroids: " + aster, screenWidth - 200, 100, textPaint);
                 for (int i = -1; i <= gameStatics.getLives() - 2; ++i) {
                     canvas.drawBitmap(bitmapLives, screenWidth / 2 + i * 41, 100, null);
                 }

@@ -23,9 +23,9 @@ public class Global {
     private static int X_PANTALLA = 1050;
     private static int Y_PANTALLA = 1750;
     private static int STANDARD_VELOCITY_PEW = 20;
-    private static int STANDARD_SIZE_ASTEROID = 150;
+    private static int STANDARD_SIZE_ASTEROID = X_PANTALLA*2/25;
     private static int STARTING_LIVES = 3;
-    private static int MUSSOL_SIZE = 70;
+    private static int MUSSOL_SIZE = X_PANTALLA/25;
     private static int FIRST_SPLIT = 4;
     private static int SECOND_SPLIT = 2;
     private static int ASTEROIDS_LEVEL2 = calcAsteroids(10);
