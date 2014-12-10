@@ -31,6 +31,7 @@ public class Clear extends Activity {
     public void save(View view) {
         Global global = Global.getInstance();
         int score = global.getScore();
+        int firstScore = score;
         EditText text = (EditText)findViewById(R.id.textEdit);
         String name = text.getText().toString();
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -52,6 +53,9 @@ public class Clear extends Activity {
                 name = iName;
                 editor.commit();
             }
+        }
+        if(!changed){
+        	Global.getInstance().setLastScore(0);
         }
         Intent intent = new Intent(this, HighScores.class);
         startActivity(intent);

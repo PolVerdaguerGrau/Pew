@@ -29,7 +29,7 @@ public class GameController {
     private int screenWidth;
     private int screenHeight;
 
-    private GameStatics gameStatics;
+    private GameStaticss gameStatics;
 
     Bitmap background;
     Bitmap bitmapLives;
@@ -43,7 +43,7 @@ public class GameController {
         this.level = glob.getLevel();
         this.resources = context.getResources();
 
-        gameStatics = new GameStatics(level,  this);
+        gameStatics = new GameStaticss(level,  this);
 
         asteroids = new AsteroidController(resources,this, level, screenWidth, screenHeight);
         mussol = new Mussol(resources, this);
@@ -117,7 +117,7 @@ public class GameController {
                 }
             } else if(Global.getInstance().getLevel() == -1){
                 asteroids = new AsteroidController(resources,this, level, screenWidth, screenHeight);
-                gameStatics = new GameStatics(level, this);
+                gameStatics = new GameStaticss(level, this);
             }
             else if (gameStatics.isLost()) {
                 canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), stdPaint);
