@@ -20,7 +20,6 @@ public class Levels extends Activity {
     }
 
     public void lvl1(View view) {
-        System.out.println("LVL");
         Intent intent = new Intent(this, WaitingScreen.class);
         Global glob = Global.getInstance();
         glob.setLevel(1);

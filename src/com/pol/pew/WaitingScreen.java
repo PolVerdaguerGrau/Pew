@@ -11,12 +11,9 @@ public class WaitingScreen extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("ENTERING WAITING");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waiting_screen);
         Intent intent = new Intent(this, GameSupport.class);
-        System.out.println("STARTING SUPPORT");
         startActivity(intent);
     }
 

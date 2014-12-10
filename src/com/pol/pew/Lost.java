@@ -61,7 +61,6 @@ public class Lost extends Activity {
     public void save(View view) {
         Global global = Global.getInstance();
         int score = global.getScore();
-        int firstScore = score;
         EditText text = (EditText)findViewById(R.id.textEdit);
         String name = text.getText().toString();
         SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -72,7 +71,6 @@ public class Lost extends Activity {
             String actualName = "Name" + i;
             int iScore = sharedPreferences.getInt(actualString, 0);
             String iName = sharedPreferences.getString(actualName, "PEW");
-            Global.getInstance().setLastScore(0);
             if(iScore <= score) {
                 if(!changed) {
                     changed = true;

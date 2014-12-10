@@ -26,7 +26,6 @@ public class HighScores extends Activity {
         TextView t = (TextView)findViewById(R.id.textView);
         t.setTextColor(Global.getInstance().getLastScore() == 1 ? Color.YELLOW : Color.WHITE);
         t.setText("1.  " + String.valueOf(score) + "   " + name);
-        System.out.println(String.valueOf(score));
         if(score == 0) {
             t.setText("Empty");
         }
