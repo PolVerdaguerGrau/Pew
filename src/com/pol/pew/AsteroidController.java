@@ -23,6 +23,8 @@ public class AsteroidController {
     int xPantalla;
     int yPantalla;
     private GameController gameController;
+	private ArrayList<Asteroid> vvvvvv = new ArrayList<Asteroid>();
+
 
     public AsteroidController (Resources resources, GameController gameController, int lvl, int screenWidth, int screenHeight) {
         global = Global.getInstance();
@@ -130,7 +132,8 @@ public class AsteroidController {
             if(asteroid.isAlive()) {
                 asteroid.move(screenWidth, screenHeight);
             } else {
-                asteroidIterator.remove();
+                vvvvvv.add(asteroid);
+                asteroid.die();
                 gameController.asteroidBreaks();
                 if(asteroid.getMida() == Global.getSTANDARD_SIZE_ASTEROID()) {
                     asteroids.add(new Asteroid(asteroid.getPosx(), asteroid.getPosy(), asteroid.getDir()+45, asteroid.getVelocity(), asteroidMigBitmap, asteroid.getMida()/2));
@@ -148,7 +151,12 @@ public class AsteroidController {
 
     public void draw(Canvas canvas) {
         for(Asteroid asteroid : asteroids) {
-            asteroid.draw(canvas, asteroid.getPosx(), asteroid.getPosy(), paint);
+            if(asteroid.isAlive()) {
+            	asteroid.draw(canvas, asteroid.getPosx(), asteroid.getPosy(), paint);
+            }
+        }
+        for(Asteroid asteroid : vvvvvv) {
+        	asteroids.remove(asteroid);
         }
     }
 }

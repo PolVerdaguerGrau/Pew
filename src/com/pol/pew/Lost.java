@@ -98,4 +98,10 @@ public class Lost extends Activity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+    
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainPage.class);
+        startActivity(intent);
+    }
 }

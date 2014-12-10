@@ -100,14 +100,14 @@ public class UnCaughtException extends Activity implements UncaughtExceptionHand
             report.append("Stack:\n");
             final Writer result = new StringWriter();
             final PrintWriter printWriter = new PrintWriter(result);
-            //e.printStackTrace(printWriter);
+            e.printStackTrace(printWriter);
             report.append(result.toString());
             printWriter.close();
             report.append('\n');
             report.append("**** End of current Report ***");
             Log.e(UnCaughtException.class.getName(),
                     "Error while sendErrorMail" + report);
-            //sendErrorMail(report);
+            sendErrorMail(report);
         } catch (Throwable ignore) {
             Log.e(UnCaughtException.class.getName(),
                     "Error while sending error e-mail", ignore);

@@ -81,9 +81,10 @@ public class Clear extends Activity {
 
     @Override
     public void onBackPressed() {
-        return;
+        Intent intent = new Intent(this, MainPage.class);
+        startActivity(intent);
     }
-
+    
     public void mainpage(View view) {
         Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);

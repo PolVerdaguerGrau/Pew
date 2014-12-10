@@ -15,12 +15,10 @@ public class ThreadPintor extends Thread {
     private long sleepTime;
     private long overSleepTime = 0;
     private long excess = 0;
-
     public final static int RUNNING = 1;
     public final static int PAUSED = 2;
     private static final int MAX_FRAME_SKIPS = 5;
     int state = RUNNING;
-
     GameController gameController;
 
     public ThreadPintor(SurfaceHolder surfaceHolder, Context context,

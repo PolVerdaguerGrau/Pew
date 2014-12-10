@@ -27,6 +27,8 @@ public class Mussol {
     private int radiMussol;
     private Resources resources;
     private GameController gameController;
+	private ArrayList<Pew> ppppp = new ArrayList<Pew>();
+
 
     private Global global;
 
@@ -44,9 +46,9 @@ public class Mussol {
         posy = maxyPantalla/2;
         bitmap = global.getMussolBitmap();
         if(bitmap == null) {
-        bitmap = BitmapFactory.decodeResource(resources, R.drawable.mussol);
-        bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
-        global.setMussolBitmap(bitmap);
+        	bitmap = BitmapFactory.decodeResource(resources, R.drawable.mussol);
+        	bitmap = Bitmap.createScaledBitmap(bitmap, Global.getMIDA_MUSSOL(), Global.getMIDA_MUSSOL(), true);
+        	global.setMussolBitmap(bitmap);
         }
 
         velocityX = 0;
@@ -91,12 +93,14 @@ public class Mussol {
     }
 
     public void disparar() {
-        Pew p = new Pew(posx,posy, directionFace, pewBitmap);
-        pews.add(p);
+    	if(pews.size() <= 20) {
+    		Pew p = new Pew(posx,posy, directionFace, pewBitmap);
+        	pews.add(p);
+    	}
     }
 
     public void updatePews(int screenWidth, int screenHeight, AsteroidController asteroidController) {
-        Iterator<Pew> ite =  pews.iterator();
+    	Iterator<Pew> ite =  pews.iterator();
         while(ite.hasNext()) {
             Pew pew = ite.next();
             if(pew.isAlive()) {
@@ -111,9 +115,8 @@ public class Mussol {
                 }
                 pew.move(screenWidth, screenHeight);
             } else {
-                ite.remove();
+                ppppp.add(pew);
             }
-
         }
     }
 
@@ -164,11 +167,14 @@ public class Mussol {
                 pew.draw(canvas, pew.posx, pew.posy, paint);
             }
         }
+        for(Pew pew : ppppp) {
+        	pews.remove(pew);
+        }
     }
 
     public void draw(Canvas canvas, Paint paint) {
-        drawPews(canvas);
         canvas.save();
+    	drawPews(canvas);
         canvas.rotate(directionFace, posx, posy);
         global = Global.getInstance();
         if(!alive || global.isFinished()) {
