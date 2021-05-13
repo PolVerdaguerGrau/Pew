@@ -63,7 +63,7 @@ public class Asteroid {
     }
 
     public void draw(Canvas canvas, float x, float y, Paint paint) {
-        canvas.save(Canvas.MATRIX_SAVE_FLAG);
+        canvas.save();
       //  canvas.rotate(-angle, x, y);
         canvas.drawBitmap(bitmap, x - bitmap.getWidth() / 2, y - bitmap.getHeight() / 2, paint);
         canvas.restore();
